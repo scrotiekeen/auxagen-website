@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 interface TypewriterProps {
@@ -28,30 +28,42 @@ export function Typewriter({
 
   const currentPhrase = phrases[phraseIndex];
 
-  const tick = useCallback(() => {
+  useEffect(() => {
+    let delay: number;
+
     if (!isDeleting) {
       if (charIndex < currentPhrase.length) {
-        setCharIndex((prev) => prev + 1);
-        return typingSpeed;
+        delay = typingSpeed;
+      } else {
+        delay = pauseDuration;
       }
-      setIsDeleting(true);
-      return pauseDuration;
+    } else {
+      if (charIndex > 0) {
+        delay = deletingSpeed;
+      } else {
+        delay = typingSpeed;
+      }
     }
 
-    if (charIndex > 0) {
-      setCharIndex((prev) => prev - 1);
-      return deletingSpeed;
-    }
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        if (charIndex < currentPhrase.length) {
+          setCharIndex((prev) => prev + 1);
+        } else {
+          setIsDeleting(true);
+        }
+      } else {
+        if (charIndex > 0) {
+          setCharIndex((prev) => prev - 1);
+        } else {
+          setIsDeleting(false);
+          setPhraseIndex((prev) => (prev + 1) % phrases.length);
+        }
+      }
+    }, delay);
 
-    setIsDeleting(false);
-    setPhraseIndex((prev) => (prev + 1) % phrases.length);
-    return typingSpeed;
-  }, [charIndex, isDeleting, currentPhrase, phrases.length, typingSpeed, deletingSpeed, pauseDuration]);
-
-  useEffect(() => {
-    const timeout = setTimeout(tick, tick());
     return () => clearTimeout(timeout);
-  }, [tick]);
+  }, [charIndex, isDeleting, phraseIndex, currentPhrase, phrases.length, typingSpeed, deletingSpeed, pauseDuration]);
 
   return (
     <span className={cn("text-gray-400", className)}>
