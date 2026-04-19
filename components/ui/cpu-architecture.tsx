@@ -52,6 +52,9 @@ const PATHS = [
   "M 840 60 v 140 q 0 16 -16 16 h -78 q -16 0 -16 16 v 118",
 ] as const;
 
+// Main artery indices — straight cardinal shots with thicker strokes
+const ARTERY_INDICES = new Set([1, 5, 9, 10, 13, 14]);
+
 const GRADIENT_CYCLE = [
   "auxano-emerald-grad",
   "auxano-teal-grad",
@@ -83,7 +86,7 @@ export function AuxanoChip({
       preserveAspectRatio={preserveAspectRatio}
       style={style}
     >
-      {/* Circuit Paths — all 24 */}
+      {/* Secondary circuit paths — thinner, lower hierarchy */}
       <g
         stroke="currentColor"
         fill="none"
@@ -92,9 +95,39 @@ export function AuxanoChip({
         pathLength="100"
         markerStart="url(#auxano-circle-marker)"
       >
-        {PATHS.map((d, i) => (
-          <path key={i} d={d} strokeDasharray="100 100" pathLength="100" />
-        ))}
+        {PATHS.map((d, i) =>
+          !ARTERY_INDICES.has(i) ? (
+            <path key={i} d={d} strokeDasharray="100 100" pathLength="100" />
+          ) : null
+        )}
+        {animateLines && (
+          <animate
+            attributeName="stroke-dashoffset"
+            from="100"
+            to="0"
+            dur="1.2s"
+            fill="freeze"
+            calcMode="spline"
+            keySplines="0.25,0.1,0.5,1"
+            keyTimes="0; 1"
+          />
+        )}
+      </g>
+
+      {/* Main artery paths — thicker, brighter, cardinal directions */}
+      <g
+        stroke="#2a5a3a"
+        fill="none"
+        strokeWidth="2.2"
+        strokeDasharray="100 100"
+        pathLength="100"
+        markerStart="url(#auxano-circle-marker)"
+      >
+        {PATHS.map((d, i) =>
+          ARTERY_INDICES.has(i) ? (
+            <path key={i} d={d} strokeDasharray="100 100" pathLength="100" />
+          ) : null
+        )}
         {animateLines && (
           <animate
             attributeName="stroke-dashoffset"
@@ -116,7 +149,11 @@ export function AuxanoChip({
             className={`cpu-architecture cpu-line-${i + 1}`}
             cx="0"
             cy="0"
-            r={i % 4 === 0 ? 24 : i % 3 === 0 ? 18 : 21}
+            r={
+              ARTERY_INDICES.has(i)
+                ? i % 2 === 0 ? 32 : 28
+                : i % 4 === 0 ? 22 : i % 3 === 0 ? 18 : 20
+            }
             fill={`url(#${GRADIENT_CYCLE[i % GRADIENT_CYCLE.length]})`}
           />
         </g>
@@ -137,7 +174,7 @@ export function AuxanoChip({
       <g>
         {/* Dense Connection Pins */}
         {showConnections && (
-          <g fill="url(#auxano-connection-gradient)">
+          <g fill="url(#auxano-connection-gradient)" filter="url(#auxano-pin-glow)">
             {/* Top pins — protrude above chip top edge (y=300), pin y=284 h=16 */}
             {[424, 448, 472, 496, 520, 544, 568, 592, 616, 640, 664, 688, 712, 736, 760].map((x) => (
               <rect key={x} x={x} y="284" width="8" height="16" rx="3" />
@@ -157,48 +194,48 @@ export function AuxanoChip({
           </g>
         )}
 
-        {/* Main Chip Body — 420×200, centered at (600,400) */}
+        {/* Main Chip Body — 420×200, centered at (600,400), softer corners + gradient fill */}
         <rect
           x="390"
           y="300"
           width="420"
           height="200"
-          rx="12"
-          fill="#0e1a0e"
+          rx="16"
+          fill="url(#auxano-chip-body-grad)"
           filter="url(#auxano-glow)"
         />
 
-        {/* Inner chip face — 8px padding all sides */}
+        {/* Inner chip face — 8px padding all sides, softer corners */}
         <rect
           x="398"
           y="308"
           width="404"
           height="184"
-          rx="6"
-          fill="#0a120a"
+          rx="12"
+          fill="url(#auxano-chip-face-grad)"
           stroke="#1a3020"
           strokeWidth="1"
         />
 
-        {/* Corner accent marks — L-shaped, 6px inside inner face corners */}
-        <g stroke="#10B981" strokeWidth="1.8" fill="none" opacity="0.55">
+        {/* Corner accent marks — L-shaped, bold signature detail */}
+        <g stroke="#10B981" strokeWidth="2.5" fill="none" opacity="0.85">
           {/* Top-left */}
-          <path d="M 404 314 h 18 M 404 314 v 14" />
+          <path d="M 404 314 h 27 M 404 314 v 21" />
           {/* Top-right */}
-          <path d="M 796 314 h -18 M 796 314 v 14" />
+          <path d="M 796 314 h -27 M 796 314 v 21" />
           {/* Bottom-left */}
-          <path d="M 404 486 h 18 M 404 486 v -14" />
+          <path d="M 404 486 h 27 M 404 486 v -21" />
           {/* Bottom-right */}
-          <path d="M 796 486 h -18 M 796 486 v -14" />
+          <path d="M 796 486 h -27 M 796 486 v -21" />
         </g>
       </g>
 
       {/* Defs */}
       <defs>
-        {/* Masks — one per path */}
+        {/* Masks — one per path, wider stroke for more visible orbs */}
         {PATHS.map((d, i) => (
           <mask key={i} id={`auxano-mask-${i + 1}`}>
-            <path d={d} strokeWidth="3" stroke="white" fill="none" />
+            <path d={d} strokeWidth="5" stroke="white" fill="none" />
           </mask>
         ))}
 
@@ -240,6 +277,18 @@ export function AuxanoChip({
           <stop offset="100%" stopColor="transparent" />
         </radialGradient>
 
+        {/* Chip body gradient — darker at edges, slightly lighter at center */}
+        <radialGradient id="auxano-chip-body-grad" cx="50%" cy="50%" r="55%">
+          <stop offset="0%" stopColor="rgba(10,18,10,0.85)" />
+          <stop offset="100%" stopColor="rgba(10,18,10,0.97)" />
+        </radialGradient>
+
+        {/* Chip inner face gradient */}
+        <radialGradient id="auxano-chip-face-grad" cx="50%" cy="50%" r="55%">
+          <stop offset="0%" stopColor="rgba(14,26,14,0.9)" />
+          <stop offset="100%" stopColor="rgba(8,14,8,0.98)" />
+        </radialGradient>
+
         {/* Chip glow — pulsing */}
         <filter id="auxano-glow" x="-40%" y="-40%" width="180%" height="180%">
           <feDropShadow dx="0" dy="0" stdDeviation="14" floodColor="#10B981">
@@ -265,6 +314,11 @@ export function AuxanoChip({
           </feDropShadow>
         </filter>
 
+        {/* Pin glow — emerald drop shadow */}
+        <filter id="auxano-pin-glow" x="-60%" y="-60%" width="220%" height="220%">
+          <feDropShadow dx="0" dy="0" stdDeviation="3" floodColor="#10B981" floodOpacity="0.7" />
+        </filter>
+
         {/* Circle markers at path starts */}
         <marker
           id="auxano-circle-marker"
@@ -281,10 +335,10 @@ export function AuxanoChip({
           </circle>
         </marker>
 
-        {/* Connection gradient */}
+        {/* Connection gradient — brighter emerald */}
         <linearGradient id="auxano-connection-gradient" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#5a7a5a" />
-          <stop offset="60%" stopColor="#0e1a0e" />
+          <stop offset="0%" stopColor="#10B981" />
+          <stop offset="100%" stopColor="#1a3a2a" />
         </linearGradient>
       </defs>
     </svg>

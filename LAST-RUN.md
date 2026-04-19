@@ -1,4 +1,24 @@
-# Last Run — 2026-04-18
+# Last Run — 2026-04-18 (Session 2)
+
+## What Was Done
+Hero CPU chip visual polish pass — all 5 fixes applied to `components/ui/cpu-architecture.tsx`.
+
+### Changes
+1. **Chip body less boxy** — replaced flat `#0e1a0e` fill with `radialGradient` (center lighter, edges darker). `rx` increased `12→16` on body, `6→12` on inner face.
+2. **Pins glow with emerald** — connection gradient updated to `#10B981 → #1a3a2a` (full emerald top). Added `auxano-pin-glow` filter (`feDropShadow` in emerald, opacity 0.7).
+3. **Corner accents bolder** — `opacity` 0.55→0.85, `strokeWidth` 1.8→2.5, L-shapes extended 50% (h/v 18/14 → 27/21).
+4. **Circuit line hierarchy** — split 24 paths into two render groups: 6 cardinal arteries (indices 1,5,9,10,13,14) at `strokeWidth 2.2` / `stroke #2a5a3a`; 18 secondary paths remain at `1.2` / `currentColor`.
+5. **Orbs more visible** — mask `strokeWidth` `3→5`; artery orbs `r=28-32`, secondary orbs `r=18-22`.
+
+### Files Modified
+- `components/ui/cpu-architecture.tsx`
+
+### Build Status
+TypeScript check: clean (no errors)
+
+---
+
+# Previous Run — 2026-04-18 (Session 1)
 
 ## What was done
 CPU chip now acts as a visual frame around the headline text instead of displaying text inside the SVG.
