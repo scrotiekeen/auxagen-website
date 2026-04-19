@@ -11,41 +11,44 @@ export interface AuxanoChipProps {
   animateText?: boolean;
   animateLines?: boolean;
   animateMarkers?: boolean;
+  preserveAspectRatio?: string;
+  style?: React.CSSProperties;
 }
 
-// All 24 circuit path definitions — shared between SVG paths, masks, and CSS offset-paths
+// All 24 circuit path definitions — 1200x800 viewBox, chip centered at (600,400)
+// Paths originate from screen edges and converge on the central chip
 const PATHS = [
   // Left-side connections
-  "M 0 100 h 180 q 8 0 8 8 v 62 q 0 8 8 8 h 39",
-  "M 0 200 h 235",
-  "M 0 300 h 130 q 8 0 8 -8 v -70 q 0 -8 8 -8 h 89",
-  "M 0 150 h 140 q 8 0 8 8 v 27 q 0 8 8 8 h 79",
+  "M 0 200 h 360 q 16 0 16 16 v 124 q 0 16 16 16 h 78",
+  "M 0 400 h 470",
+  "M 0 600 h 260 q 16 0 16 -16 v -140 q 0 -16 16 -16 h 178",
+  "M 0 300 h 280 q 16 0 16 16 v 54 q 0 16 16 16 h 158",
   // Right-side connections
-  "M 600 100 h -180 q -8 0 -8 8 v 67 q 0 8 -8 8 h -39",
-  "M 600 200 h -235",
-  "M 600 300 h -130 q -8 0 -8 -8 v -70 q 0 -8 -8 -8 h -89",
-  "M 600 155 h -120 q -8 0 -8 8 v 12 q 0 8 -8 8 h -99",
+  "M 1200 200 h -360 q -16 0 -16 16 v 134 q 0 16 -16 16 h -78",
+  "M 1200 400 h -470",
+  "M 1200 600 h -260 q -16 0 -16 -16 v -140 q 0 -16 -16 -16 h -178",
+  "M 1200 310 h -240 q -16 0 -16 16 v 24 q 0 16 -16 16 h -198",
   // Top connections
-  "M 120 0 v 100 q 0 8 8 8 h 107 q 8 0 8 8 v 59",
-  "M 270 0 v 175",
-  "M 320 0 v 175",
-  "M 470 0 v 100 q 0 8 -8 8 h -119 q -8 0 -8 8 v 59",
+  "M 240 0 v 200 q 0 16 16 16 h 214 q 16 0 16 16 v 118",
+  "M 540 0 v 350",
+  "M 640 0 v 350",
+  "M 940 0 v 200 q 0 16 -16 16 h -238 q -16 0 -16 16 v 118",
   // Bottom connections
-  "M 120 400 v -80 q 0 -8 8 -8 h 107 q 8 0 8 -8 v -79",
-  "M 265 400 v -175",
-  "M 330 400 v -175",
-  "M 480 400 v -90 q 0 -8 -8 -8 h -120 q -8 0 -8 -8 v -69",
+  "M 240 800 v -160 q 0 -16 16 -16 h 214 q 16 0 16 -16 v -158",
+  "M 530 800 v -350",
+  "M 660 800 v -350",
+  "M 960 800 v -180 q 0 -16 -16 -16 h -240 q -16 0 -16 -16 v -138",
   // Corner staircase sweeps
-  "M 30 30 h 80 q 8 0 8 8 v 60 q 0 8 8 8 h 80 q 8 0 8 8 v 61 h 21",
-  "M 570 30 h -80 q -8 0 -8 8 v 60 q 0 8 -8 8 h -80 q -8 0 -8 8 v 61 h -21",
-  "M 30 370 h 60 q 8 0 8 -8 v -60 q 0 -8 8 -8 h 60 q 8 0 8 -8 v -61 h 61",
-  "M 570 370 h -80 q -8 0 -8 -8 v -60 q 0 -8 -8 -8 h -80 q -8 0 -8 -8 v -61 h -21",
+  "M 60 60 h 160 q 16 0 16 16 v 120 q 0 16 16 16 h 160 q 16 0 16 16 v 122 h 42",
+  "M 1140 60 h -160 q -16 0 -16 16 v 120 q 0 16 -16 16 h -160 q -16 0 -16 16 v 122 h -42",
+  "M 60 740 h 120 q 16 0 16 -16 v -120 q 0 -16 16 -16 h 120 q 16 0 16 -16 v -122 h 122",
+  "M 1140 740 h -160 q -16 0 -16 -16 v -120 q 0 -16 -16 -16 h -160 q -16 0 -16 -16 v -122 h -42",
   // Horizontal branch paths
-  "M 50 200 h 80 q 8 0 8 8 h 97",
-  "M 550 200 h -80 q -8 0 -8 -8 h -97",
+  "M 100 400 h 160 q 16 0 16 16 h 194",
+  "M 1100 400 h -160 q -16 0 -16 -16 h -194",
   // Inner top shortcuts
-  "M 180 30 v 70 q 0 8 8 8 h 39 q 8 0 8 8 v 59",
-  "M 420 30 v 70 q 0 8 -8 8 h -39 q -8 0 -8 8 v 59",
+  "M 360 60 v 140 q 0 16 16 16 h 78 q 16 0 16 16 v 118",
+  "M 840 60 v 140 q 0 16 -16 16 h -78 q -16 0 -16 16 v 118",
 ] as const;
 
 const GRADIENT_CYCLE = [
@@ -69,13 +72,17 @@ export function AuxanoChip({
   lineMarkerSize = 16,
   animateLines = true,
   animateMarkers = true,
+  preserveAspectRatio = "xMidYMid meet",
+  style,
 }: AuxanoChipProps) {
   return (
     <svg
       className={cn("text-muted", className)}
       width={width}
       height={height}
-      viewBox="0 0 600 400"
+      viewBox="0 0 1200 800"
+      preserveAspectRatio={preserveAspectRatio}
+      style={style}
     >
       {/* Circuit Paths — all 24 */}
       <g
@@ -110,7 +117,7 @@ export function AuxanoChip({
             className={`cpu-architecture cpu-line-${i + 1}`}
             cx="0"
             cy="0"
-            r={i % 4 === 0 ? 12 : i % 3 === 0 ? 8 : 10}
+            r={i % 4 === 0 ? 14 : i % 3 === 0 ? 10 : 12}
             fill={`url(#${GRADIENT_CYCLE[i % GRADIENT_CYCLE.length]})`}
           />
         </g>
@@ -118,75 +125,75 @@ export function AuxanoChip({
 
       {/* Chip ambient glow layer */}
       <rect
-        x="215"
-        y="165"
-        width="170"
-        height="70"
-        rx="8"
+        x="430"
+        y="330"
+        width="340"
+        height="140"
+        rx="16"
         fill="transparent"
         filter="url(#auxano-glow-ambient)"
       />
 
       {/* Central Chip */}
       <g>
-        {/* Dense Connection Pins — Top (12 pins) */}
+        {/* Dense Connection Pins */}
         {showConnections && (
           <g fill="url(#auxano-connection-gradient)">
             {/* Top pins */}
-            {[243, 252, 261, 270, 279, 288, 297, 306, 315, 324, 333, 342].map((x) => (
-              <rect key={x} x={x} y="167" width="4" height="8" rx="1.5" />
+            {[486, 504, 522, 540, 558, 576, 594, 612, 630, 648, 666, 684].map((x) => (
+              <rect key={x} x={x} y="334" width="8" height="16" rx="3" />
             ))}
             {/* Bottom pins */}
-            {[243, 252, 261, 270, 279, 288, 297, 306, 315, 324, 333, 342].map((x) => (
-              <rect key={x} x={x} y="225" width="4" height="8" rx="1.5" />
+            {[486, 504, 522, 540, 558, 576, 594, 612, 630, 648, 666, 684].map((x) => (
+              <rect key={x} x={x} y="450" width="8" height="16" rx="3" />
             ))}
             {/* Left pins */}
-            {[181, 190, 199, 208, 217].map((y) => (
-              <rect key={y} x="227" y={y} width="8" height="4" rx="1" />
+            {[362, 380, 398, 416, 434].map((y) => (
+              <rect key={y} x="454" y={y} width="16" height="8" rx="2" />
             ))}
             {/* Right pins */}
-            {[181, 190, 199, 208, 217].map((y) => (
-              <rect key={y} x="365" y={y} width="8" height="4" rx="1" />
+            {[362, 380, 398, 416, 434].map((y) => (
+              <rect key={y} x="730" y={y} width="16" height="8" rx="2" />
             ))}
           </g>
         )}
 
         {/* Main Chip Body */}
         <rect
-          x="235"
-          y="175"
-          width="130"
-          height="50"
-          rx="4"
+          x="470"
+          y="350"
+          width="260"
+          height="100"
+          rx="8"
           fill="#0e1a0e"
           filter="url(#auxano-glow)"
         />
 
         {/* Inner chip face */}
         <rect
-          x="239"
-          y="179"
-          width="122"
-          height="42"
-          rx="2"
+          x="478"
+          y="358"
+          width="244"
+          height="84"
+          rx="4"
           fill="#0a120a"
           stroke="#1a3020"
-          strokeWidth="0.5"
+          strokeWidth="1"
         />
 
         {/* Corner accent marks */}
-        <g stroke="#10B981" strokeWidth="0.8" fill="none" opacity="0.5">
-          <path d="M 241 183 h 6 M 241 183 v 5" />
-          <path d="M 359 183 h -6 M 359 183 v 5" />
-          <path d="M 241 217 h 6 M 241 217 v -5" />
-          <path d="M 359 217 h -6 M 359 217 v -5" />
+        <g stroke="#10B981" strokeWidth="1.6" fill="none" opacity="0.5">
+          <path d="M 482 366 h 12 M 482 366 v 10" />
+          <path d="M 718 366 h -12 M 718 366 v 10" />
+          <path d="M 482 434 h 12 M 482 434 v -10" />
+          <path d="M 718 434 h -12 M 718 434 v -10" />
         </g>
 
         {/* Chip Text — AUXANO AGENCY */}
         <text
-          x="300"
-          y="198"
-          fontSize="9.5"
+          x="600"
+          y="396"
+          fontSize="19"
           fill={animateText ? "url(#auxano-text-gradient)" : "white"}
           fontWeight="700"
           letterSpacing="0.12em"
@@ -198,9 +205,9 @@ export function AuxanoChip({
 
         {/* Subtitle */}
         <text
-          x="300"
-          y="213"
-          fontSize="4.5"
+          x="600"
+          y="426"
+          fontSize="9"
           fill="#34D399"
           fontWeight="400"
           letterSpacing="0.3em"
@@ -211,7 +218,7 @@ export function AuxanoChip({
         </text>
 
         {/* Center indicator dot */}
-        <circle cx="300" cy="203" r="1" fill="#10B981" opacity="0.4">
+        <circle cx="600" cy="406" r="2" fill="#10B981" opacity="0.4">
           <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2.5s" repeatCount="indefinite" />
         </circle>
       </g>
@@ -221,7 +228,7 @@ export function AuxanoChip({
         {/* Masks — one per path */}
         {PATHS.map((d, i) => (
           <mask key={i} id={`auxano-mask-${i + 1}`}>
-            <path d={d} strokeWidth="0.8" stroke="white" fill="none" />
+            <path d={d} strokeWidth="1.6" stroke="white" fill="none" />
           </mask>
         ))}
 
@@ -265,7 +272,7 @@ export function AuxanoChip({
 
         {/* Chip glow — pulsing */}
         <filter id="auxano-glow" x="-40%" y="-40%" width="180%" height="180%">
-          <feDropShadow dx="0" dy="0" stdDeviation="5" floodColor="#10B981">
+          <feDropShadow dx="0" dy="0" stdDeviation="10" floodColor="#10B981">
             <animate
               attributeName="floodOpacity"
               values="0.5;0.9;0.5"
@@ -273,12 +280,12 @@ export function AuxanoChip({
               repeatCount="indefinite"
             />
           </feDropShadow>
-          <feDropShadow dx="1" dy="1" stdDeviation="1.5" floodColor="black" floodOpacity="0.3" />
+          <feDropShadow dx="2" dy="2" stdDeviation="3" floodColor="black" floodOpacity="0.3" />
         </filter>
 
         {/* Ambient chip glow — softer, wider */}
         <filter id="auxano-glow-ambient" x="-100%" y="-100%" width="300%" height="300%">
-          <feDropShadow dx="0" dy="0" stdDeviation="20" floodColor="#10B981">
+          <feDropShadow dx="0" dy="0" stdDeviation="40" floodColor="#10B981">
             <animate
               attributeName="floodOpacity"
               values="0.12;0.28;0.12"
