@@ -1,82 +1,76 @@
-# Last Run — Tasks 10–13
+# Last Run — Hero Overhaul
 
-**Date:** 2026-04-12
-**Agent:** Claude Sonnet 4.6 (subagent)
-**Plan:** docs/superpowers/plans/2026-04-13-auxano-website.md
+**Date:** 2026-04-18
+**Agent:** Claude Sonnet 4.6 (Clive / Manager Agent)
+**Task:** Complete visual overhaul of the hero section — jaw-dropping redesign
 
 ---
 
 ## What Was Attempted
 
-Execute Tasks 10–13 of the Auxano website implementation plan:
-10. Services Page — app/services/page.tsx
-11. Contact Page with 3-Step Wizard — components/step-indicator.tsx + components/contact-wizard.tsx + app/contact/page.tsx
-12. Contact API Route — app/api/contact/route.ts + .env.local (not committed)
-13. Final QA — npm run build verified, LAST-RUN.md updated
+Full redesign of 3 files:
+1. `components/ui/cpu-architecture.tsx` — major SVG overhaul
+2. `components/hero.tsx` — immersive layered hero
+3. `app/globals.css` — new animation classes + hero effects
 
 ---
 
 ## What Succeeded
 
-All 4 tasks completed successfully. Every build passed before commit.
+### cpu-architecture.tsx
+- ViewBox expanded from `0 0 300 170` → `0 0 600 400` (2x scale, more room for paths)
+- Chip text changed from `AUXANO` → `AUXANO AGENCY` (wider chip: 130px wide vs 53px)
+- Chip repositioned to center: `x=235 y=175 width=130 height=50`
+- **24 circuit paths** (up from 8) covering all directions: left, right, top, bottom, corners, branch staircase sweeps
+- **24 animated light orbs** cycling through 8 gradient colors (emerald, teal, purple, white, green, amber, cyan, rose)
+- **Dense connection pins**: 12 top, 12 bottom, 5 left, 5 right (total 34 vs prior 10)
+- Corner accent marks (L-shaped decorative elements at chip corners)
+- Center indicator dot with pulsing SVG animate
+- **Pulsing chip glow**: `feDropShadow` with animated `floodOpacity` (0.5→0.9→0.5, 3s cycle)
+- **Ambient glow filter**: wider softer glow behind chip (0.12→0.28→0.12, 4s cycle)
+- Shimmering text gradient for chip label
 
-### Task 10 — Services Page ✅
-- `app/services/page.tsx` — full services page with ServiceSection component pattern
-- 4 services: AI Strategy, Website & App Dev, Data Analytics, Ongoing Support
-- Each section has: description, What's Included checklist, 3-step How It Works, CTA linking to /contact?service=xxx
-- Hash anchors: #strategy, #builds, #analytics, #support (scroll-mt-20 for fixed nav offset)
-- Commit: `8d23fdc` — feat: add services page with detailed breakdown of all 4 offerings
+### hero.tsx
+- **30 floating particles** — static positions for SSR safety, CSS animation for drift/pulse, varied colors (emerald, teal, cyan, white), per-particle glow via box-shadow
+- **4 concentric pulsing rings** centered on chip (160/280/420/580px), animated with `hero-ring-pulse`
+- **Ambient emerald bloom** — large blurred radial gradient div positioned behind chip
+- **Chip glow overlay** — additional focused glow at chip container level
+- **Radial vignette** — darkens edges, creates spotlight effect at center
+- **Dot grid background** with mask fading edges
+- Framer Motion entrance animations: badge (y:-16→0), headline (y:24→0), chip (scale 0.88→1), buttons (y:20→0), scroll indicator (fade in delayed)
+- **Gradient headline**: "Your Business" in emerald→teal gradient
+- **Badge chip** with pulse dot and monospace tracking
+- **Scroll indicator** — ChevronDown with `hero-scroll-bounce` animation
+- CTAs preserved with hover gradient on primary button
 
-### Task 11 — Contact Page + Wizard ✅
-- `components/step-indicator.tsx` — progress dots with filled/unfilled states and connector lines
-- `components/contact-wizard.tsx` — client component with 3 steps:
-  - Step 1: service selection (5 options, "Not sure yet" highlighted with emerald border)
-  - Step 2: team size selection (4 options)
-  - Step 3: contact details form (name, email, message textarea) with submit to /api/contact
-  - URL param pre-selection: /contact?service=strategy skips to step 2
-  - Success state after submit, error display on failure
-- `app/contact/page.tsx` — server component wrapping wizard in <Suspense> (required for useSearchParams)
-- Commit: `1324514` — feat: add contact page with 3-step wizard and service pre-selection
-
-### Task 12 — Contact API Route ✅
-- `app/api/contact/route.ts` — POST handler using Resend
-  - Server-side validation: name (required), email (regex), service (enum), teamSize (enum)
-  - Sends formatted HTML email to corcolt2114@gmail.com
-  - Subject: "New Auxano Lead: {name} — {service}"
-  - replyTo set to submitter's email
-- `.env.local` created with placeholder `RESEND_API_KEY=re_your_api_key_here` (NOT committed)
-- .gitignore already covers `.env*`
-- Commit: `feb17c3` — feat: add contact form API route with Resend email delivery
-
-### Task 13 — Final QA ✅
-- Final `npm run build` passed with all 5 routes:
-  - ○ / (static)
-  - ○ /_not-found (static)
-  - ○ /contact (static)
-  - ○ /services (static)
-  - ƒ /api/contact (dynamic, server-rendered on demand)
-- Zero TypeScript errors, zero build warnings
+### globals.css
+- Removed old `cpu-line-1` through `cpu-line-8` (old 300x170 viewBox paths)
+- Added `cpu-line-1` through `cpu-line-24` all targeting new 600x400 coordinate space
+- Added hero keyframes: `hero-ring-pulse`, `hero-particle-float`, `hero-scroll-bounce`
+- Added hero utility classes: `.hero-dot-grid`, `.hero-vignette`, `.hero-ambient-bloom`, `.hero-chip-glow`, `.hero-ring`, `.hero-particle`, `.hero-headline`, `.hero-scroll-indicator`
 
 ---
 
 ## What Failed
 
-Nothing failed.
+Nothing — TypeScript passed clean (`tsc --noEmit` zero errors), dev server returns HTTP 200.
 
 ---
 
 ## Current State
 
-- Branch: `master`
-- All tasks 1–13 committed and verified with `npm run build`
-- The full 3-page site is complete: Home, Services, Contact
+- Page loads correctly at localhost:3000
+- No TypeScript errors
+- All existing CTA links (/contact, /services) preserved
+- Mobile responsive (flex-col → flex-row on sm breakpoint for CTAs)
+- Chip says "AUXANO AGENCY" with "INTELLIGENCE" subtitle
+- 24 circuit paths with colored orbs animating through them
+- Layered depth: dot grid → vignette → particles → rings → bloom → content
 
-### Action Required from Corbin
-1. **Resend API key**: Sign up at https://resend.com, create an API key, and paste it into `.env.local` replacing `re_your_api_key_here`
-2. **Showcase screenshot**: Replace `public/showcase-screenshot.png` with a real project screenshot
-3. **Deploy**: Push to Vercel (or your preferred host) and add RESEND_API_KEY as an environment variable
+## What's Next
 
-### Key Notes
-- Contact wizard uses `useSearchParams()` → wrapped in `<Suspense>` in the contact page (required by Next.js 15+)
-- Resend `from` address uses `onboarding@resend.dev` which works on free tier without domain verification
-- All 4 service section IDs match what ServicesOverview links to: #strategy, #builds, #analytics, #support
+Corbin to review visuals and provide feedback. Then:
+1. Sign up at resend.com, add API key to .env.local
+2. Replace public/showcase-screenshot.png with real project screenshot
+3. Create GitHub repo and push
+4. Deploy to Vercel with RESEND_API_KEY env var

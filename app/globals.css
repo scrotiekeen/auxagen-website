@@ -147,56 +147,128 @@
   animation-timing-function: cubic-bezier(0.75, -0.01, 0, 0.99);
 }
 
+/* All cpu-line-* definitions below (1–24) for the 600x400 viewBox */
 .cpu-line-1 {
-  offset-path: path("M 5 30 h 120 q 8 0 8 8 v 55");
+  offset-path: path("M 0 100 h 180 q 8 0 8 8 v 62 q 0 8 8 8 h 39");
   animation-duration: 5s;
   animation-delay: 1s;
 }
-
 .cpu-line-2 {
-  offset-path: path("M 295 15 h -120 q -8 0 -8 8 v 70");
+  offset-path: path("M 0 200 h 235");
   animation-delay: 6s;
   animation-duration: 2s;
 }
-
 .cpu-line-3 {
-  offset-path: path("M 210 25 v 40 q 0 8 -8 8 h -20");
+  offset-path: path("M 0 300 h 130 q 8 0 8 -8 v -70 q 0 -8 8 -8 h 89");
   animation-delay: 4s;
   animation-duration: 6s;
 }
-
 .cpu-line-4 {
-  offset-path: path("M 270 135 v -40 q 0 -8 -8 -8 h -80");
+  offset-path: path("M 0 150 h 140 q 8 0 8 8 v 27 q 0 8 8 8 h 79");
   animation-delay: 3s;
   animation-duration: 3s;
 }
-
 .cpu-line-5 {
-  offset-path: path(
-    "M 220 110 h 25 q 8 0 8 8 v 16 q 0 8 -8 8 h -65 q -8 0 -8 -8 v -40"
-  );
+  offset-path: path("M 600 100 h -180 q -8 0 -8 8 v 67 q 0 8 -8 8 h -39");
   animation-delay: 9s;
   animation-duration: 4s;
 }
-
 .cpu-line-6 {
-  offset-path: path("M 148 160 v -68");
+  offset-path: path("M 600 200 h -235");
   animation-delay: 3s;
   animation-duration: 7s;
 }
-
 .cpu-line-7 {
-  offset-path: path(
-    "M 138 150 v -25 q 0 -8 -8 -8 h -16 q -8 0 -8 -8 v -8 q 0 -8 8 -8 h 30"
-  );
+  offset-path: path("M 600 300 h -130 q -8 0 -8 -8 v -70 q 0 -8 -8 -8 h -89");
   animation-delay: 4s;
   animation-duration: 4s;
 }
-
 .cpu-line-8 {
-  offset-path: path("M 40 50 h 40 q 8 0 8 8 v 10 q 0 8 8 8 h 48");
+  offset-path: path("M 600 155 h -120 q -8 0 -8 8 v 12 q 0 8 -8 8 h -99");
   animation-delay: 3s;
   animation-duration: 3s;
+}
+
+/* New lines 9–24 */
+.cpu-line-9 {
+  offset-path: path("M 120 0 v 100 q 0 8 8 8 h 107 q 8 0 8 8 v 59");
+  animation-duration: 4s;
+  animation-delay: 2s;
+}
+.cpu-line-10 {
+  offset-path: path("M 270 0 v 175");
+  animation-duration: 3s;
+  animation-delay: 7s;
+}
+.cpu-line-11 {
+  offset-path: path("M 320 0 v 175");
+  animation-duration: 3s;
+  animation-delay: 1.5s;
+}
+.cpu-line-12 {
+  offset-path: path("M 470 0 v 100 q 0 8 -8 8 h -119 q -8 0 -8 8 v 59");
+  animation-duration: 5s;
+  animation-delay: 5s;
+}
+.cpu-line-13 {
+  offset-path: path("M 120 400 v -80 q 0 -8 8 -8 h 107 q 8 0 8 -8 v -79");
+  animation-duration: 6s;
+  animation-delay: 3.5s;
+}
+.cpu-line-14 {
+  offset-path: path("M 265 400 v -175");
+  animation-duration: 2.5s;
+  animation-delay: 8s;
+}
+.cpu-line-15 {
+  offset-path: path("M 330 400 v -175");
+  animation-duration: 3.5s;
+  animation-delay: 4s;
+}
+.cpu-line-16 {
+  offset-path: path("M 480 400 v -90 q 0 -8 -8 -8 h -120 q -8 0 -8 -8 v -69");
+  animation-duration: 4.5s;
+  animation-delay: 1s;
+}
+.cpu-line-17 {
+  offset-path: path("M 30 30 h 80 q 8 0 8 8 v 60 q 0 8 8 8 h 80 q 8 0 8 8 v 61 h 21");
+  animation-duration: 7s;
+  animation-delay: 6s;
+}
+.cpu-line-18 {
+  offset-path: path("M 570 30 h -80 q -8 0 -8 8 v 60 q 0 8 -8 8 h -80 q -8 0 -8 8 v 61 h -21");
+  animation-duration: 5.5s;
+  animation-delay: 9s;
+}
+.cpu-line-19 {
+  offset-path: path("M 30 370 h 60 q 8 0 8 -8 v -60 q 0 -8 8 -8 h 60 q 8 0 8 -8 v -61 h 61");
+  animation-duration: 6.5s;
+  animation-delay: 2.5s;
+}
+.cpu-line-20 {
+  offset-path: path("M 570 370 h -80 q -8 0 -8 -8 v -60 q 0 -8 -8 -8 h -80 q -8 0 -8 -8 v -61 h -21");
+  animation-duration: 4s;
+  animation-delay: 11s;
+}
+.cpu-line-21 {
+  offset-path: path("M 50 200 h 80 q 8 0 8 8 h 97");
+  animation-duration: 2s;
+  animation-delay: 0.5s;
+}
+.cpu-line-22 {
+  offset-path: path("M 550 200 h -80 q -8 0 -8 -8 h -97");
+  animation-duration: 2s;
+  animation-delay: 4.5s;
+}
+.cpu-line-23 {
+  offset-path: path("M 180 30 v 70 q 0 8 8 8 h 39 q 8 0 8 8 v 59");
+  animation-duration: 3s;
+  animation-delay: 7.5s;
+}
+.cpu-line-24 {
+  offset-path: path("M 420 30 v 70 q 0 8 -8 8 h -39 q -8 0 -8 8 v 59");
+  animation-duration: 3s;
+  animation-delay: 3s;
 }
 
 @keyframes animation-path {
@@ -206,4 +278,112 @@
   100% {
     offset-distance: 100%;
   }
+}
+
+/* ── Hero Section Effects ────────────────────────────────────────── */
+
+/* Subtle dot grid */
+.hero-dot-grid {
+  background-image: radial-gradient(
+    circle,
+    rgba(16, 185, 129, 0.12) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+  mask-image: radial-gradient(
+    ellipse 80% 70% at 50% 50%,
+    black 20%,
+    transparent 100%
+  );
+}
+
+/* Radial vignette — darkens edges, creates spotlight */
+.hero-vignette {
+  background: radial-gradient(
+    ellipse 90% 80% at 50% 50%,
+    transparent 20%,
+    rgba(13, 17, 23, 0.55) 60%,
+    rgba(13, 17, 23, 0.9) 100%
+  );
+}
+
+/* Ambient emerald bloom behind chip */
+.hero-ambient-bloom {
+  width: 480px;
+  height: 220px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(16, 185, 129, 0.14) 0%,
+    rgba(52, 211, 153, 0.06) 40%,
+    transparent 70%
+  );
+  filter: blur(32px);
+  transform: translate(-50%, -50%);
+}
+
+/* Chip-level glow overlay */
+.hero-chip-glow {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(16, 185, 129, 0.18) 0%,
+    transparent 70%
+  );
+  filter: blur(20px);
+}
+
+/* Concentric rings */
+@keyframes hero-ring-pulse {
+  0%, 100% {
+    opacity: 0.06;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.14;
+    transform: scale(1.04);
+  }
+}
+
+.hero-ring {
+  animation: hero-ring-pulse ease-in-out infinite;
+}
+
+/* Floating particles */
+@keyframes hero-particle-float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: var(--p-opacity, 0.35);
+  }
+  33% {
+    transform: translateY(-10px) translateX(3px);
+    opacity: calc(var(--p-opacity, 0.35) * 1.8);
+  }
+  66% {
+    transform: translateY(-5px) translateX(-4px);
+    opacity: calc(var(--p-opacity, 0.35) * 0.6);
+  }
+}
+
+.hero-particle {
+  animation: hero-particle-float ease-in-out infinite;
+}
+
+/* Headline glow */
+.hero-headline {
+  text-shadow:
+    0 0 40px rgba(16, 185, 129, 0.2),
+    0 0 80px rgba(16, 185, 129, 0.08);
+}
+
+/* Scroll indicator bounce */
+@keyframes hero-scroll-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(7px);
+  }
+}
+
+.hero-scroll-indicator {
+  animation: hero-scroll-bounce 2.2s ease-in-out infinite;
 }
