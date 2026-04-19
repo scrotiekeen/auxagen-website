@@ -1,7 +1,7 @@
-# Auxano — AI Consulting Website
+# Auxano Agency — Business Website
 
 ## What This Is
-Website for Auxano, Corbin's AI consulting business. Helps small-to-midsize businesses implement AI — offering strategy consulting, custom web/app builds, data analytics & dashboards, and ongoing support retainers. The site is a sales funnel: establish credibility → showcase services → convert visitors to consultation leads.
+Website for Auxano Agency (brand: Auxagen), a full-stack business growth agency offering consulting, marketing, AI, web dev, and custom software. The site is a sales funnel: establish credibility → showcase services → convert visitors to consultation leads.
 
 ## Tech Stack
 - Framework: Next.js 16 (App Router) + TypeScript
@@ -13,27 +13,38 @@ Website for Auxano, Corbin's AI consulting business. Helps small-to-midsize busi
 - Hosting: Vercel (not yet deployed)
 
 ## Current State
-**MVP is built — all 13 implementation tasks complete.**
+**MVP built + major hero overhaul complete (15 commits in one session).**
 
 ### Pages
-- `/` — Homepage: hero (Auxano chip SVG + typewriter + CTAs), services overview cards, 3D scroll showcase, bottom CTA
+- `/` — Homepage: hero (full-screen CPU circuit board + headline framed by chip), services overview cards, 3D scroll showcase, bottom CTA
 - `/services` — Detailed service breakdowns with "What's Included" and "How It Works" for each
 - `/contact` — 3-step mini wizard (service → team size → contact info) with URL pre-selection support
 - `/api/contact` — POST route, validates + sends email via Resend
 
 ### Key Components
-- `components/ui/cpu-architecture.tsx` — Auxano-branded animated circuit board SVG (hero centerpiece)
-- `components/typewriter.tsx` — Rotating phrase typewriter effect
+- `components/ui/cpu-architecture.tsx` — Full-screen animated circuit board SVG (24 paths, 34 pins, pulsing glow, corner accents, line hierarchy). ViewBox 1200x800 with preserveAspectRatio. The chip frames the headline text — no text inside the SVG itself.
+- `components/hero.tsx` — Deep space abyss background, sparse star field, floating particles, concentric rings, vignette. Headline + subtitle + CTAs centered over the chip frame.
+- `components/scroll-transition.tsx` — Wraps Hero + ServicesOverview. Natural scroll (no sticky), gradient bridge between sections, services fade-in on viewport entry.
+- `components/typewriter.tsx` — Rotating phrase typewriter effect (moved to services section)
+- `components/services-overview.tsx` — Service cards with typewriter intro
+- `components/nav.tsx` — Fixed nav, "Auxano Agency" centered, links + CTA on the right
 - `components/container-scroll.tsx` — Framer Motion 3D laptop rotation on scroll
 - `components/contact-wizard.tsx` — Client-side multi-step form
-- `components/nav.tsx` — Fixed nav with mobile hamburger
 - `components/footer.tsx` — Site footer
 
 ### Brand
-- Name: Auxano (Greek: "to grow")
-- Tagline: "AI Built Around Your Business — Growing With You, Not Past You."
-- Colors: Emerald & Dark (#10B981 primary, #111827 dark base, #0D1117 darker)
-- Tone: Approachable + Bold
+- Name: Auxano Agency (brand: Auxagen)
+- Tagline: "Solutions Engineered For Your Business — Growing With You, Not Past You."
+- Colors: Emerald & Dark (#10B981 primary, #111827 dark base, #0D1117 darker, deep space #060B14)
+- Tone: Premium, Approachable, Bold
+
+### Design Decisions from This Session
+- Corbin prefers natural scroll — no sticky/hijacked scroll effects
+- Less is more — removed badge pill, decluttered hero to just headline + subtitle + CTAs
+- Deep space abyss vibe — sparse stars, minimal nebula, void depth, not busy
+- CPU chip frames the headline — circuit lines converge on it, chip body is the text backdrop
+- Visual hierarchy in circuit lines — 6 thick main arteries vs 18 thinner secondary paths
+- Headline is broad: "Solutions Engineered For Your Business" — covers consulting, marketing, AI, dev without pigeonholing
 
 ## Git & Deploy
 - Remote: Not yet created on GitHub
@@ -52,10 +63,12 @@ Website for Auxano, Corbin's AI consulting business. Helps small-to-midsize busi
 2. Replace public/showcase-screenshot.png with a real project screenshot
 3. Create GitHub repo and push
 4. Deploy to Vercel with RESEND_API_KEY env var
-5. Visual polish pass — Corbin to review and provide feedback on look/feel
-6. Potential: custom domain setup
+5. Corbin may want to continue polishing other sections (services, showcase, contact, footer)
+6. Potential: rebrand to Auxagen domain (auxagen.co)
+7. Potential: custom domain setup
+8. Browser caching issue — Corbin's browser aggressively caches old versions. He may need to use incognito or clear cache between changes.
 
 ## Last Session
-- **Date:** 2026-04-13
-- **What was done:** Full MVP build — 13 tasks executed across 3 agent dispatches. Project scaffolded, all components built, all pages assembled, contact API route created. Fixed typewriter infinite re-render bug.
-- **What's next:** Corbin to review visuals, provide feedback. Then polish pass + deploy.
+- **Date:** 2026-04-19
+- **What was done:** Major hero overhaul — 15 commits. Started with basic CPU chip, evolved to full-screen circuit board filling viewport, chip framing the headline, deep space abyss background. Reworked headline from "AI Built Around Your Business" to "Solutions Engineered For Your Business" to cover broader service scope. Centered "Auxano Agency" in navbar. Added scroll transition (natural, no sticky). Moved typewriter to services section. Polished circuit lines with visual hierarchy, glowing pins, bold corner accents.
+- **What's next:** Continue reviewing/polishing other sections. Deploy when ready. Corbin to test with incognito to bypass cache.
