@@ -1,4 +1,43 @@
-# Last Run — 2026-04-18 (Session 3)
+# Last Run — 2026-04-18 (Session 4)
+
+## Task
+Cinematic scroll transition between Hero and Services sections.
+
+## What Was Built
+
+### components/scroll-transition.tsx (new file)
+`ScrollTransition` wraps both `Hero` and `ServicesOverview` and orchestrates a scroll-linked animation sequence.
+
+**Architecture:**
+- 200vh container with the hero held `position: sticky; top: 0; height: 100vh`
+- `useScroll({ target, offset: ["start start", "end end"] })` — maps `scrollYProgress` 0→1 over exactly the 100vh window the hero is sticky
+- All scroll transforms are GPU-accelerated (opacity, scale, translate)
+
+**Animation sequence as user scrolls:**
+1. **0.07–0.62**: Glowing emerald scan line sweeps from top to bottom with bloom glow above and below
+2. **0.18–0.84**: Scatter particles (12 emerald dots) burst radially outward from chip center
+3. **0.30–0.54**: Ghost echo lines appear at 36% and 63% viewport height — residue of the scan passage
+4. **0.42–0.95**: Dark abyss overlay creeps in (radial gradient matching hero background)
+5. **0.45–0.90**: Hero content fades out while subtly scaling up (1.0→1.07) — falling-into-void effect
+6. **whileInView**: Services section slides up from `y:36` with a spring ease reveal
+
+**`ScatterParticle` sub-component** — receives `MotionValue<number>` as prop and calls `useTransform` internally, avoiding hooks-in-loops rule violation.
+
+### app/page.tsx
+- Removed direct `Hero` + `ServicesOverview` imports
+- Replaced with single `<ScrollTransition />` component
+
+## Build Status
+✓ Clean build — TypeScript clean, all 5 routes generated
+
+## What's Next
+- Corbin to review transition feel at localhost:3000
+- Possible tweaks: scan line speed, particle distance, overlay darkness
+- Deployment: Resend API key → GitHub repo → Vercel
+
+---
+
+# Previous Run — 2026-04-18 (Session 3)
 
 ## Task
 Deep Space Abyss hero background.
