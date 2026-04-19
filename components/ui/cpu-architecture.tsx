@@ -88,7 +88,7 @@ export function AuxanoChip({
       <g
         stroke="currentColor"
         fill="none"
-        strokeWidth="0.5"
+        strokeWidth="1.2"
         strokeDasharray="100 100"
         pathLength="100"
         markerStart="url(#auxano-circle-marker)"
@@ -117,7 +117,7 @@ export function AuxanoChip({
             className={`cpu-architecture cpu-line-${i + 1}`}
             cx="0"
             cy="0"
-            r={i % 4 === 0 ? 14 : i % 3 === 0 ? 10 : 12}
+            r={i % 4 === 0 ? 24 : i % 3 === 0 ? 18 : 21}
             fill={`url(#${GRADIENT_CYCLE[i % GRADIENT_CYCLE.length]})`}
           />
         </g>
@@ -228,7 +228,7 @@ export function AuxanoChip({
         {/* Masks — one per path */}
         {PATHS.map((d, i) => (
           <mask key={i} id={`auxano-mask-${i + 1}`}>
-            <path d={d} strokeWidth="1.6" stroke="white" fill="none" />
+            <path d={d} strokeWidth="3" stroke="white" fill="none" />
           </mask>
         ))}
 

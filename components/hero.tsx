@@ -50,7 +50,7 @@ export function Hero() {
       {/* ── Layer 0: CPU circuit board — full hero background ────────── */}
       <div className="absolute inset-0 z-0">
         <AuxanoChip
-          className="w-full h-full text-[#152215]"
+          className="w-full h-full text-[#1a4a2a]"
           width="100%"
           height="100%"
           preserveAspectRatio="xMidYMid slice"
@@ -115,53 +115,60 @@ export function Hero() {
       />
 
       {/* ── Layer 7: Content ─────────────────────────────────────────── */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-20 text-center">
+      <div className="relative z-10 flex flex-col items-center min-h-screen px-4 sm:px-6 text-center">
 
-        {/* Badge */}
-        <motion.div
-          className="mb-6"
-          initial={{ opacity: 0, y: -16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/25 bg-emerald-500/[0.06] text-emerald-400 text-xs font-mono tracking-[0.2em] uppercase backdrop-blur-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Enterprise AI Consulting
-          </div>
-        </motion.div>
+        {/* ── Text group — floats in upper portion, chip visible below ── */}
+        <div className="flex flex-col items-center pt-28 sm:pt-36">
 
-        {/* Headline */}
-        <motion.div
-          className="max-w-4xl mx-auto mb-3"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-        >
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-[1.08] tracking-tight mb-4 hero-headline">
-            AI Built Around<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500">
-              Your Business
-            </span>
-          </h1>
-          <p className="text-base sm:text-lg text-emerald-300/60 mb-4 font-light tracking-widest uppercase text-sm">
-            Growing With You, Not Past You.
-          </p>
-          <div className="text-sm sm:text-base text-slate-400 font-mono">
-            <Typewriter
-              prefix="We build AI solutions that "
-              phrases={[
-                "automate your workflows.",
-                "turn data into decisions.",
-                "grow your business.",
-                "save you time and money.",
-              ]}
-            />
-          </div>
-        </motion.div>
+          {/* Badge */}
+          <motion.div
+            className="mb-6"
+            initial={{ opacity: 0, y: -16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/25 bg-emerald-500/[0.06] text-emerald-400 text-xs font-mono tracking-[0.2em] uppercase backdrop-blur-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              Enterprise AI Consulting
+            </div>
+          </motion.div>
 
-        {/* CTA Buttons */}
+          {/* Headline */}
+          <motion.div
+            className="max-w-4xl mx-auto mb-3"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+          >
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-[1.08] tracking-tight mb-4 hero-headline">
+              AI Built Around<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500">
+                Your Business
+              </span>
+            </h1>
+            <p className="text-base sm:text-lg text-emerald-300/60 mb-4 font-light tracking-widest uppercase text-sm">
+              Growing With You, Not Past You.
+            </p>
+            <div className="text-sm sm:text-base text-slate-400 font-mono">
+              <Typewriter
+                prefix="We build AI solutions that "
+                phrases={[
+                  "automate your workflows.",
+                  "turn data into decisions.",
+                  "grow your business.",
+                  "save you time and money.",
+                ]}
+              />
+            </div>
+          </motion.div>
+        </div>
+
+        {/* ── Spacer — chip shows through here ─────────────────────── */}
+        <div className="flex-1" />
+
+        {/* ── CTA Buttons — anchored to lower portion ───────────────── */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 mt-8"
+          className="flex flex-col sm:flex-row gap-4 mb-24"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.45 }}

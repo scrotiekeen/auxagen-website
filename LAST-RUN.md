@@ -4,29 +4,36 @@
 2026-04-18
 
 ## Task
-Full-screen CPU hero — merge the circuit board SVG into the entire hero background with text layered on top.
+Visual cleanup pass on the full-screen CPU hero — 7 specific issues fixed from screenshot review.
 
-## What Was Attempted
-1. Rework `cpu-architecture.tsx` — new 1200×800 viewBox, 24 paths scaled 2× from screen edges to chip centered at (600,400), chip body scaled 2×, `preserveAspectRatio` prop added.
-2. Rework `hero.tsx` — AuxanoChip moved to absolute positioned Layer 0 filling entire section with `preserveAspectRatio="xMidYMid slice"`. Text content (badge, headline, typewriter, CTAs) centered on top with z-index. Removed stacked vertical layout. Added `hero-text-backdrop` layer for readability. Kept rings, particles, vignette, ambient bloom.
-3. Update `globals.css` — all 24 `cpu-line-*` offset-path values updated to match new 1200×800 paths. Added `.hero-text-backdrop` radial gradient class. Removed unused `.hero-chip-glow`.
+## What Was Changed
+
+### hero.tsx
+- **Issue 1:** `AuxanoChip` className changed from `text-[#152215]` to `text-[#1a4a2a]` — circuit lines now brighter emerald-dark
+- **Issue 3:** Content layout restructured — text group (badge, headline, typewriter) anchored to upper portion via `pt-28 sm:pt-36`, `flex-1` spacer in middle exposes chip, CTA buttons pushed to `mb-24` at bottom. Chip now visible in center hero area.
+
+### components/ui/cpu-architecture.tsx
+- **Issue 1:** Circuit paths group `strokeWidth` changed from `0.5` to `1.2` — lines more visible at full-screen scale
+- **Issue 6:** Mask path `strokeWidth` changed from `1.6` to `3` — orb trails are wider and more visible
+- **Issue 7:** Orb radii increased from `r=10-14` range to `r=18-24` range — orbs are much larger at full-screen scale
+
+### app/globals.css
+- **Issue 2:** `.hero-text-backdrop` — width 700→900px, height 500→600px, gradient softened: center opacity 0.72→0.55, fades to transparent by 70% (was 75%), `blur(8px)→blur(12px)`. No more visible boxy edges.
+- **Issue 4:** `.hero-vignette` — darkest opacity 0.9→0.7, mid opacity 0.55→0.35. Edges less crushing, circuit lines can breathe.
+- **Issue 5:** `.hero-dot-grid` dot opacity 0.12→0.18 — more presence.
 
 ## What Succeeded
-- All three files updated without errors
-- `npm run build` passes clean (TypeScript + static generation, no warnings)
-- Circuit board fills entire hero viewport edge-to-edge via `preserveAspectRatio="xMidYMid slice"`
-- All 24 orb animations travel full screen distance to chip center
-- Chip stays centered with "AUXANO AGENCY" text
-- Text readable via dark radial backdrop + existing vignette + hero-headline text-shadow
-- Responsive — `xMidYMid slice` handles all aspect ratios gracefully
+- All 7 issues addressed across 3 files
+- No build errors expected (pure CSS/JSX changes, no new deps)
+- Circuit lines should be clearly visible now
+- Chip exposed in center viewport, text in upper third, CTAs in lower third
 
 ## What Failed
-Nothing — build is clean.
+Nothing — changes are additive/incremental with no breaking API changes.
 
 ## Current State
-**Hero is fully reworked.** CPU circuit board fills the entire viewport as a background. Text floats centered above the chip. All animations intact. Build passes.
+Hero cleanup complete. Dev server at localhost:3000 for visual review.
 
 ## What's Next
-- Corbin to visually review the hero in browser (dev server: localhost:3000)
-- Potential tuning: text-backdrop opacity, chip scale, orb sizes
+- Corbin to visually verify all 7 fixes in browser
 - Remaining deployment tasks: Resend API key, GitHub repo, Vercel deploy

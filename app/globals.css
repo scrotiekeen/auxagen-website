@@ -284,7 +284,7 @@
 .hero-dot-grid {
   background-image: radial-gradient(
     circle,
-    rgba(16, 185, 129, 0.12) 1px,
+    rgba(16, 185, 129, 0.18) 1px,
     transparent 1px
   );
   background-size: 28px 28px;
@@ -300,8 +300,8 @@
   background: radial-gradient(
     ellipse 90% 80% at 50% 50%,
     transparent 20%,
-    rgba(13, 17, 23, 0.55) 60%,
-    rgba(13, 17, 23, 0.9) 100%
+    rgba(13, 17, 23, 0.35) 60%,
+    rgba(13, 17, 23, 0.7) 100%
   );
 }
 
@@ -321,15 +321,15 @@
 
 /* Text backdrop — subtle dark radial behind hero text for readability */
 .hero-text-backdrop {
-  width: 700px;
-  height: 500px;
+  width: 900px;
+  height: 600px;
   background: radial-gradient(
     ellipse at center,
-    rgba(13, 17, 23, 0.72) 0%,
-    rgba(13, 17, 23, 0.45) 40%,
-    transparent 75%
+    rgba(13, 17, 23, 0.55) 0%,
+    rgba(13, 17, 23, 0.25) 45%,
+    transparent 70%
   );
-  filter: blur(8px);
+  filter: blur(12px);
 }
 
 /* Concentric rings */
