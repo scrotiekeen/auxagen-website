@@ -7,9 +7,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Auxano — AI Built Around Your Business",
+  title: "Auxano — Solutions Engineered Around Your Business",
   description:
-    "AI consulting and development that grows with you, not past you. Strategy, builds, analytics, and ongoing support for businesses ready to harness AI.",
+    "Consulting, marketing, AI, and development — solutions engineered to grow with you, not past you.",
 };
 
 export default function RootLayout({

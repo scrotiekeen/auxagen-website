@@ -9,7 +9,7 @@ export function Footer() {
           <div>
             <div className="text-xl font-bold text-white mb-2">Auxano</div>
             <p className="text-sm text-gray-400">
-              AI Built Around Your Business — Growing With You, Not Past You.
+              Solutions Engineered Around Your Business — Growing With You, Not Past You.
             </p>
           </div>
 
