@@ -6,38 +6,18 @@ import { ChevronDown } from "lucide-react";
 import { AuxanoChip } from "@/components/ui/cpu-architecture";
 import { Typewriter } from "@/components/typewriter";
 
-// Static particle field — deterministic positions for SSR consistency
+// Sparse space dust — just enough to feel alive in the void
 const PARTICLES = [
-  { x: 5,  y: 20, s: 2,   d: 0,   dur: 12, color: "#10B981", opacity: 0.45 },
-  { x: 12, y: 65, s: 1.5, d: 3,   dur: 9,  color: "#34D399", opacity: 0.35 },
-  { x: 20, y: 35, s: 1,   d: 1.5, dur: 15, color: "#6EE7B7", opacity: 0.3  },
-  { x: 28, y: 80, s: 2.5, d: 5,   dur: 8,  color: "#10B981", opacity: 0.5  },
-  { x: 35, y: 10, s: 1,   d: 2,   dur: 11, color: "#2DD4BF", opacity: 0.3  },
-  { x: 42, y: 55, s: 1.5, d: 7,   dur: 13, color: "#34D399", opacity: 0.4  },
-  { x: 50, y: 28, s: 1,   d: 4,   dur: 10, color: "#ffffff", opacity: 0.2  },
-  { x: 58, y: 75, s: 2,   d: 1,   dur: 14, color: "#10B981", opacity: 0.45 },
-  { x: 65, y: 18, s: 1.5, d: 6,   dur: 9,  color: "#6EE7B7", opacity: 0.35 },
-  { x: 72, y: 50, s: 1,   d: 3,   dur: 12, color: "#2DD4BF", opacity: 0.3  },
-  { x: 80, y: 85, s: 2,   d: 8,   dur: 7,  color: "#10B981", opacity: 0.5  },
-  { x: 88, y: 40, s: 1.5, d: 2.5, dur: 11, color: "#34D399", opacity: 0.35 },
-  { x: 95, y: 25, s: 1,   d: 5,   dur: 14, color: "#6EE7B7", opacity: 0.3  },
-  { x: 92, y: 72, s: 2.5, d: 0.5, dur: 10, color: "#10B981", opacity: 0.5  },
-  { x: 3,  y: 50, s: 1.5, d: 4,   dur: 13, color: "#2DD4BF", opacity: 0.35 },
-  { x: 75, y: 90, s: 1,   d: 7,   dur: 8,  color: "#34D399", opacity: 0.3  },
-  { x: 45, y: 92, s: 2,   d: 3,   dur: 11, color: "#10B981", opacity: 0.4  },
-  { x: 22, y: 5,  s: 1.5, d: 6,   dur: 9,  color: "#6EE7B7", opacity: 0.3  },
-  { x: 55, y: 4,  s: 1,   d: 1,   dur: 15, color: "#2DD4BF", opacity: 0.25 },
-  { x: 68, y: 60, s: 2,   d: 8,   dur: 10, color: "#10B981", opacity: 0.45 },
-  { x: 82, y: 15, s: 1.5, d: 4,   dur: 12, color: "#34D399", opacity: 0.35 },
-  { x: 15, y: 90, s: 2,   d: 2,   dur: 9,  color: "#10B981", opacity: 0.4  },
-  { x: 38, y: 45, s: 1,   d: 9,   dur: 14, color: "#6EE7B7", opacity: 0.25 },
-  { x: 62, y: 38, s: 1.5, d: 3.5, dur: 11, color: "#2DD4BF", opacity: 0.35 },
-  { x: 8,  y: 42, s: 2,   d: 5.5, dur: 8,  color: "#34D399", opacity: 0.4  },
-  { x: 90, y: 55, s: 1,   d: 7,   dur: 13, color: "#10B981", opacity: 0.35 },
-  { x: 48, y: 14, s: 2.5, d: 2,   dur: 10, color: "#ffffff", opacity: 0.18 },
-  { x: 30, y: 60, s: 1.5, d: 6,   dur: 12, color: "#6EE7B7", opacity: 0.3  },
-  { x: 70, y: 30, s: 1,   d: 4,   dur: 9,  color: "#2DD4BF", opacity: 0.28 },
-  { x: 55, y: 70, s: 2,   d: 1,   dur: 14, color: "#10B981", opacity: 0.45 },
+  { x: 8,  y: 15, s: 1,   d: 0,   dur: 40, color: "#ffffff", opacity: 0.25 },
+  { x: 25, y: 70, s: 1,   d: 5,   dur: 35, color: "#e0f0ff", opacity: 0.20 },
+  { x: 42, y: 8,  s: 1,   d: 3,   dur: 45, color: "#10B981", opacity: 0.18 },
+  { x: 60, y: 85, s: 1,   d: 8,   dur: 30, color: "#ffffff", opacity: 0.22 },
+  { x: 78, y: 30, s: 1,   d: 2,   dur: 38, color: "#c0d8ff", opacity: 0.20 },
+  { x: 92, y: 60, s: 1,   d: 6,   dur: 42, color: "#10B981", opacity: 0.15 },
+  { x: 15, y: 45, s: 1.5, d: 4,   dur: 28, color: "#ffffff", opacity: 0.18 },
+  { x: 50, y: 50, s: 1,   d: 10,  dur: 50, color: "#e0f0ff", opacity: 0.12 },
+  { x: 85, y: 88, s: 1,   d: 7,   dur: 36, color: "#34D399", opacity: 0.15 },
+  { x: 35, y: 92, s: 1,   d: 1,   dur: 32, color: "#ffffff", opacity: 0.20 },
 ];
 
 // Concentric ring sizes (px) — centered on the chip
@@ -45,9 +25,15 @@ const RINGS = [200, 360, 520, 700];
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen bg-auxano-darker overflow-hidden">
+    <section className="relative min-h-screen hero-space-bg overflow-hidden">
 
-      {/* ── Layer 0: CPU circuit board — full hero background ────────── */}
+      {/* ── Layer 0a: Deep space star field (sparse — abyss feel) ───── */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="hero-starfield-small" style={{ opacity: 0.35 }} />
+        <div className="hero-starfield-bright" style={{ opacity: 0.5 }} />
+      </div>
+
+      {/* ── Layer 0b: CPU circuit board — full hero background ──────────── */}
       <div className="absolute inset-0 z-0">
         <AuxanoChip
           className="w-full h-full text-[#1a4a2a]"
@@ -59,7 +45,12 @@ export function Hero() {
         />
       </div>
 
-      {/* ── Layer 1: Dot grid ───────────────────────────────────────── */}
+      {/* ── Layer 1a: Subtle nebula wash (just one faint emerald hint) ── */}
+      <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
+        <div className="hero-nebula-emerald" style={{ opacity: 0.04 }} />
+      </div>
+
+      {/* ── Layer 1b: Dot grid ──────────────────────────────────────── */}
       <div className="absolute inset-0 z-[1] hero-dot-grid pointer-events-none" />
 
       {/* ── Layer 2: Concentric pulsing rings (centered on chip) ────── */}
@@ -67,7 +58,7 @@ export function Hero() {
         {RINGS.map((size, i) => (
           <div
             key={i}
-            className="absolute rounded-full border border-emerald-500/[0.07] hero-ring"
+            className="absolute rounded-full border border-emerald-500/[0.04] hero-ring"
             style={{
               width: `${size}px`,
               height: `${size}px`,

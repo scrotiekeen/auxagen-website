@@ -1,4 +1,38 @@
-# Last Run — 2026-04-18 (Session 2)
+# Last Run — 2026-04-18 (Session 3)
+
+## Task
+Deep Space Abyss hero background.
+
+## What Was Done
+
+### components/hero.tsx
+- Changed section background from `bg-auxano-darker` to `hero-space-bg` (deep cosmic radial gradient)
+- Added **Layer 0a: star field** (z-0, before CPU board) — 3 CSS class divs (`hero-starfield-small`, `hero-starfield-medium`, `hero-starfield-bright`) using box-shadow star technique
+- Added **Layer 1a: nebula washes** (z-[1]) — 3 large blurred color divs: emerald (upper-right), purple/indigo (lower-left), blue (upper-left)
+- Reduced concentric ring opacity `0.07 → 0.04` so rings don't compete with stars
+- Updated `PARTICLES` array: colors now mix white (`#ffffff`), blue-white (`#e0f0ff`, `#c0d8ff`, `#a0c4ff`) with emerald family; 1px–2.5px sizes; 18–40s durations for sense of vast scale
+
+### app/globals.css
+- Added `.hero-space-bg` — deep radial gradient: `#060B14 → #080e18 → #0a0f1a → #020408`
+- Added `.hero-starfield-small` — 84 tiny 1px white stars, slow drift 130s cycle
+- Added `.hero-starfield-medium` — 40 medium 2px blue-white stars, counter-drift 160s reverse
+- Added `.hero-starfield-bright` — 15 bright 2px stars with 2px blur glow, 4.5s twinkle
+- Added `.hero-nebula-emerald`, `.hero-nebula-purple`, `.hero-nebula-blue` — opacity 0.07–0.11, blur 90–110px
+- Updated `.hero-vignette` — deeper: `rgba(2,4,8,0.95)` at edges
+- Updated `.hero-ambient-bloom` — expanded to 780×380px, stronger glow into void
+- Added keyframes: `hero-star-drift-slow`, `hero-star-drift-med`, `hero-star-twinkle`
+
+## Build Status
+TypeScript check: clean (no errors)
+
+## What's Next
+- Corbin to review at localhost:3000
+- Possible tweaks: star density, nebula intensity, drift speed
+- Deployment: Resend API key → GitHub repo → Vercel
+
+---
+
+# Previous Run — 2026-04-18 (Session 2)
 
 ## What Was Done
 Hero CPU chip visual polish pass — all 5 fixes applied to `components/ui/cpu-architecture.tsx`.
@@ -48,8 +82,3 @@ CPU chip now acts as a visual frame around the headline text instead of displayi
 
 ## Build status
 ✓ Clean build — all 7 pages generated successfully
-
-## What's next
-- Corbin to review the framed headline effect at localhost:3000
-- Visual polish pass if needed (chip size, headline size, glow intensity)
-- Deployment prep: GitHub repo + Vercel
