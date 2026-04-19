@@ -319,19 +319,6 @@
   transform: translate(-50%, -50%);
 }
 
-/* Text backdrop — subtle dark radial behind hero text for readability */
-.hero-text-backdrop {
-  width: 900px;
-  height: 600px;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(13, 17, 23, 0.55) 0%,
-    rgba(13, 17, 23, 0.25) 45%,
-    transparent 70%
-  );
-  filter: blur(12px);
-}
-
 /* Concentric rings */
 @keyframes hero-ring-pulse {
   0%, 100% {

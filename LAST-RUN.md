@@ -1,39 +1,35 @@
-# LAST-RUN.md
+# Last Run — 2026-04-18
 
-## Session Date
-2026-04-18
+## What was done
+CPU chip now acts as a visual frame around the headline text instead of displaying text inside the SVG.
 
-## Task
-Visual cleanup pass on the full-screen CPU hero — 7 specific issues fixed from screenshot review.
+### Changes made
 
-## What Was Changed
+**`components/ui/cpu-architecture.tsx`**
+- Removed `<text>` elements: "AUXANO AGENCY" and "INTELLIGENCE"
+- Removed center indicator `<circle>` dot
+- Enlarged chip body: `x=390, y=300, width=420, height=200, rx=12` (was 260×100)
+- Updated inner chip face proportionally with 8px padding: `x=398, y=308, width=404, height=184`
+- Updated corner accent L-marks to match new chip corners
+- Updated connection pins: 15 top/bottom pins across the wider top edge, 7 left/right pins along the taller sides
+- Enlarged ambient glow rect to match new chip area
+- Removed `text` prop from destructured params (prop kept for API compat, just unused)
+- All 24 circuit paths unchanged — their endpoints already fall inside the new (larger) chip body
 
-### hero.tsx
-- **Issue 1:** `AuxanoChip` className changed from `text-[#152215]` to `text-[#1a4a2a]` — circuit lines now brighter emerald-dark
-- **Issue 3:** Content layout restructured — text group (badge, headline, typewriter) anchored to upper portion via `pt-28 sm:pt-36`, `flex-1` spacer in middle exposes chip, CTA buttons pushed to `mb-24` at bottom. Chip now visible in center hero area.
+**`components/hero.tsx`**
+- Removed Layer 5 (`.hero-text-backdrop` div) entirely
+- Changed content layout from split (text top + spacer + CTAs bottom) to fully centered (`flex flex-col items-center justify-center min-h-screen`)
+- Stacked: badge → headline → subtitle → typewriter → CTAs, all centered over chip
+- Reduced headline from `text-4xl/6xl/7xl` to `text-4xl/5xl/6xl` so it fits within chip frame
+- Removed `animateText` and `text` props from `<AuxanoChip>` usage
 
-### components/ui/cpu-architecture.tsx
-- **Issue 1:** Circuit paths group `strokeWidth` changed from `0.5` to `1.2` — lines more visible at full-screen scale
-- **Issue 6:** Mask path `strokeWidth` changed from `1.6` to `3` — orb trails are wider and more visible
-- **Issue 7:** Orb radii increased from `r=10-14` range to `r=18-24` range — orbs are much larger at full-screen scale
+**`app/globals.css`**
+- Removed `.hero-text-backdrop` class (no longer needed)
 
-### app/globals.css
-- **Issue 2:** `.hero-text-backdrop` — width 700→900px, height 500→600px, gradient softened: center opacity 0.72→0.55, fades to transparent by 70% (was 75%), `blur(8px)→blur(12px)`. No more visible boxy edges.
-- **Issue 4:** `.hero-vignette` — darkest opacity 0.9→0.7, mid opacity 0.55→0.35. Edges less crushing, circuit lines can breathe.
-- **Issue 5:** `.hero-dot-grid` dot opacity 0.12→0.18 — more presence.
+## Build status
+✓ Clean build — all 7 pages generated successfully
 
-## What Succeeded
-- All 7 issues addressed across 3 files
-- No build errors expected (pure CSS/JSX changes, no new deps)
-- Circuit lines should be clearly visible now
-- Chip exposed in center viewport, text in upper third, CTAs in lower third
-
-## What Failed
-Nothing — changes are additive/incremental with no breaking API changes.
-
-## Current State
-Hero cleanup complete. Dev server at localhost:3000 for visual review.
-
-## What's Next
-- Corbin to visually verify all 7 fixes in browser
-- Remaining deployment tasks: Resend API key, GitHub repo, Vercel deploy
+## What's next
+- Corbin to review the framed headline effect at localhost:3000
+- Visual polish pass if needed (chip size, headline size, glow intensity)
+- Deployment prep: GitHub repo + Vercel
