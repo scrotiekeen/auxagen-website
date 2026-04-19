@@ -110,7 +110,7 @@ export function Hero() {
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-[1.08] tracking-tight mb-3 hero-headline">
             Solutions Engineered<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500">
-              Around Your Business
+              For Your Business
             </span>
           </h1>
           <p className="text-emerald-300/60 font-light tracking-widest uppercase text-xs">

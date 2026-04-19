@@ -7,7 +7,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Auxano — Solutions Engineered Around Your Business",
+  title: "Auxano — Solutions Engineered For Your Business",
   description:
     "Consulting, marketing, AI, and development — solutions engineered to grow with you, not past you.",
 };
