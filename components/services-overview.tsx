@@ -1,5 +1,8 @@
+"use client";
+
 import { Brain, Zap, BarChart3, RefreshCw } from "lucide-react";
 import { ServiceCard } from "@/components/service-card";
+import { Typewriter } from "@/components/typewriter";
 
 const services = [
   {
@@ -32,6 +35,19 @@ export function ServicesOverview() {
   return (
     <section className="bg-auxano-darker py-24 px-6">
       <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-8">
+          <div className="text-base sm:text-lg text-slate-400 font-mono">
+            <Typewriter
+              prefix="We build AI solutions that "
+              phrases={[
+                "automate your workflows.",
+                "turn data into decisions.",
+                "grow your business.",
+                "save you time and money.",
+              ]}
+            />
+          </div>
+        </div>
         <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
           What We Do
         </h2>

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { AuxanoChip } from "@/components/ui/cpu-architecture";
-import { Typewriter } from "@/components/typewriter";
 
 // Sparse space dust — just enough to feel alive in the void
 const PARTICLES = [
@@ -101,19 +100,7 @@ export function Hero() {
       {/* ── Layer 6: Content — centered over chip ─────────────────────── */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 text-center gap-4">
 
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/25 bg-emerald-500/[0.06] text-emerald-400 text-xs font-mono tracking-[0.2em] uppercase backdrop-blur-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Enterprise AI Consulting
-          </div>
-        </motion.div>
-
-        {/* Headline + subtitle + typewriter — the chip body frames this block */}
+        {/* Headline + subtitle — the chip body frames this block */}
         <motion.div
           className="max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 24 }}
@@ -126,25 +113,14 @@ export function Hero() {
               Your Business
             </span>
           </h1>
-          <p className="text-emerald-300/60 font-light tracking-widest uppercase text-xs mb-3">
+          <p className="text-emerald-300/60 font-light tracking-widest uppercase text-xs">
             Growing With You, Not Past You.
           </p>
-          <div className="text-sm sm:text-base text-slate-400 font-mono">
-            <Typewriter
-              prefix="We build AI solutions that "
-              phrases={[
-                "automate your workflows.",
-                "turn data into decisions.",
-                "grow your business.",
-                "save you time and money.",
-              ]}
-            />
-          </div>
         </motion.div>
 
         {/* CTA Buttons */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 mt-2"
+          className="flex flex-col sm:flex-row gap-4 mt-1"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.45 }}
