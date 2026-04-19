@@ -108,9 +108,9 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
         >
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-[1.08] tracking-tight mb-3 hero-headline">
-            AI Built Around<br />
+            Solutions Engineered<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500">
-              Your Business
+              Around Your Business
             </span>
           </h1>
           <p className="text-emerald-300/60 font-light tracking-widest uppercase text-xs">
