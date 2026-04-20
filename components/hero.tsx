@@ -21,6 +21,7 @@ const PARTICLES = [
 
 // Concentric ring sizes (px) — centered on the chip
 const RINGS = [200, 360, 520, 700];
+const RINGS_MOBILE = [120, 200, 300, 400];
 
 export function Hero() {
   return (
@@ -32,16 +33,29 @@ export function Hero() {
         <div className="hero-starfield-bright" style={{ opacity: 0.5 }} />
       </div>
 
-      {/* ── Layer 0b: CPU circuit board — full hero background (hidden on mobile) ── */}
-      <div className="absolute inset-0 z-0 hidden md:block">
-        <AuxanoChip
-          className="w-full h-full text-[#1a4a2a]"
-          width="100%"
-          height="100%"
-          preserveAspectRatio="xMidYMid slice"
-          animateLines
-          animateMarkers
-        />
+      {/* ── Layer 0b: CPU circuit board — scaled for mobile ──────────── */}
+      <div className="absolute inset-0 z-0">
+        {/* Mobile: meet (fits inside viewport), opacity reduced. Desktop: slice (fills viewport) */}
+        <div className="block md:hidden absolute inset-0">
+          <AuxanoChip
+            className="w-full h-full text-[#1a4a2a] opacity-60"
+            width="100%"
+            height="100%"
+            preserveAspectRatio="xMidYCenter meet"
+            animateLines
+            animateMarkers
+          />
+        </div>
+        <div className="hidden md:block absolute inset-0">
+          <AuxanoChip
+            className="w-full h-full text-[#1a4a2a]"
+            width="100%"
+            height="100%"
+            preserveAspectRatio="xMidYMid slice"
+            animateLines
+            animateMarkers
+          />
+        </div>
       </div>
 
       {/* ── Layer 1a: Subtle nebula wash (just one faint emerald hint) ── */}
@@ -52,12 +66,26 @@ export function Hero() {
       {/* ── Layer 1b: Dot grid ──────────────────────────────────────── */}
       <div className="absolute inset-0 z-[1] hero-dot-grid pointer-events-none" />
 
-      {/* ── Layer 2: Concentric pulsing rings (hidden on mobile) ────── */}
-      <div className="absolute inset-0 z-[2] flex items-center justify-center pointer-events-none hidden md:flex">
+      {/* ── Layer 2: Concentric pulsing rings — smaller on mobile ────── */}
+      <div className="absolute inset-0 z-[2] flex items-center justify-center pointer-events-none">
+        {/* Mobile rings */}
+        {RINGS_MOBILE.map((size, i) => (
+          <div
+            key={`m-${i}`}
+            className="absolute rounded-full border border-emerald-500/[0.04] hero-ring md:hidden"
+            style={{
+              width: `${size}px`,
+              height: `${size}px`,
+              animationDelay: `${i * 0.8}s`,
+              animationDuration: `${5 + i * 0.5}s`,
+            }}
+          />
+        ))}
+        {/* Desktop rings */}
         {RINGS.map((size, i) => (
           <div
-            key={i}
-            className="absolute rounded-full border border-emerald-500/[0.04] hero-ring"
+            key={`d-${i}`}
+            className="absolute rounded-full border border-emerald-500/[0.04] hero-ring hidden md:block"
             style={{
               width: `${size}px`,
               height: `${size}px`,
