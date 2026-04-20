@@ -35,13 +35,13 @@ export function Hero() {
 
       {/* ── Layer 0b: CPU circuit board — scaled for mobile ──────────── */}
       <div className="absolute inset-0 z-0">
-        {/* Mobile: meet (fits inside viewport), opacity reduced. Desktop: slice (fills viewport) */}
-        <div className="block md:hidden absolute inset-0">
+        {/* Mobile: slice (overflows to frame properly), same as desktop */}
+        <div className="block md:hidden absolute inset-0 overflow-hidden">
           <AuxanoChip
-            className="w-full h-full text-[#1a4a2a] opacity-60"
+            className="w-full h-full text-[#1a4a2a] opacity-70"
             width="100%"
             height="100%"
-            preserveAspectRatio="xMidYCenter meet"
+            preserveAspectRatio="xMidYMid slice"
             animateLines
             animateMarkers
           />
