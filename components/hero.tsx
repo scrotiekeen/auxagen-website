@@ -32,8 +32,8 @@ export function Hero() {
         <div className="hero-starfield-bright" style={{ opacity: 0.5 }} />
       </div>
 
-      {/* ── Layer 0b: CPU circuit board — full hero background ──────────── */}
-      <div className="absolute inset-0 z-0">
+      {/* ── Layer 0b: CPU circuit board — full hero background (hidden on mobile) ── */}
+      <div className="absolute inset-0 z-0 hidden md:block">
         <AuxanoChip
           className="w-full h-full text-[#1a4a2a]"
           width="100%"
@@ -52,8 +52,8 @@ export function Hero() {
       {/* ── Layer 1b: Dot grid ──────────────────────────────────────── */}
       <div className="absolute inset-0 z-[1] hero-dot-grid pointer-events-none" />
 
-      {/* ── Layer 2: Concentric pulsing rings (centered on chip) ────── */}
-      <div className="absolute inset-0 z-[2] flex items-center justify-center pointer-events-none">
+      {/* ── Layer 2: Concentric pulsing rings (hidden on mobile) ────── */}
+      <div className="absolute inset-0 z-[2] flex items-center justify-center pointer-events-none hidden md:flex">
         {RINGS.map((size, i) => (
           <div
             key={i}
