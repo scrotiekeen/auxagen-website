@@ -1,4 +1,25 @@
-# Last Run — 2026-04-18 (Session 4)
+# Last Run — 2026-04-24
+
+## Status: success
+
+## What was attempted
+Rebuild the "What We Do" homepage section and the /services detail page with the new 3-department structure from docs/departments.md (Web & Software, AI Strategy, Business Consulting). Internal Sales/Marketing divisions excluded.
+
+## What succeeded
+- **components/services-overview.tsx** — Complete rewrite. 3 department cards with Framer Motion stagger entrance (fade-in + slide-up). Icon, name, description, full service list, "View details →" link. Typewriter updated to 5 broader phrases. Mobile-responsive (1 col → 3 col lg).
+- **app/services/page.tsx** — Complete rewrite. Jump-link nav at top. 3 department sections (anchors: `#web-software`, `#ai-strategy`, `#business-consulting`). Each: icon header, description, service card grid (2 col), How It Works (4 steps), CTA → `/contact?service=<param>`. Metadata updated.
+- TypeScript type error fixed (Framer Motion ease tuple typed with `as const`).
+- Build passes clean. Committed: `c1922e4`.
+
+## What failed
+Nothing.
+
+## Current state
+Buildable. Committed, not pushed. No uncommitted changes. Next: review visually (incognito), polish other sections, deploy.
+
+---
+
+# Previous Run — 2026-04-18 (Session 4)
 
 ## Task
 Cinematic scroll transition between Hero and Services sections.

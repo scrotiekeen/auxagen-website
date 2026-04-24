@@ -69,6 +69,6 @@ Website for Auxano Agency (brand: Auxagen), a full-stack business growth agency 
 8. Browser caching issue — Corbin's browser aggressively caches old versions. He may need to use incognito or clear cache between changes.
 
 ## Last Session
-- **Date:** 2026-04-19
-- **What was done:** Major hero overhaul — 15 commits. Started with basic CPU chip, evolved to full-screen circuit board filling viewport, chip framing the headline, deep space abyss background. Reworked headline from "AI Built Around Your Business" to "Solutions Engineered For Your Business" to cover broader service scope. Centered "Auxano Agency" in navbar. Added scroll transition (natural, no sticky). Moved typewriter to services section. Polished circuit lines with visual hierarchy, glowing pins, bold corner accents.
-- **What's next:** Continue reviewing/polishing other sections. Deploy when ready. Corbin to test with incognito to bypass cache.
+- **Date:** 2026-04-24
+- **What was done:** Rebuilt the "What We Do" section (services-overview.tsx) and the services detail page (app/services/page.tsx) with the new 3-department structure from docs/departments.md. Homepage now shows 3 animated department cards (Web & Software, AI Strategy, Business Consulting) with icons, descriptions, service lists, and stagger Framer Motion entrance animation. Typewriter phrases updated to cover all three departments. Services page shows 3 full department sections with every service listed (name + description in a card grid), jump-link nav, How It Works steps, and CTA buttons with correct contact params. No internal Sales/Marketing divisions appear. Build passes clean.
+- **What's next:** Continue polishing other sections (showcase, contact, footer). Deploy when ready. Corbin to test with incognito to bypass cache.
