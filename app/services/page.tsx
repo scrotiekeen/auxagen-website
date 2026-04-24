@@ -1,36 +1,41 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Brain, Zap, BarChart3, RefreshCw } from "lucide-react";
+import { Code2, Brain, Briefcase } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Services — Auxano",
-  description: "AI strategy consulting, custom builds, data analytics, and ongoing support for businesses ready to grow with AI.",
+  title: "Services — Auxano Agency",
+  description:
+    "Web & software development, AI strategy and implementation, and business consulting — everything your business needs to build, grow, and scale.",
 };
 
-interface ServiceSectionProps {
+interface ServiceItem {
+  name: string;
+  description: string;
+}
+
+interface DepartmentSectionProps {
   id: string;
   icon: LucideIcon;
   title: string;
   description: string;
-  includes: string[];
-  process: { step: string; label: string }[];
+  services: ServiceItem[];
   ctaLabel: string;
   serviceParam: string;
 }
 
-function ServiceSection({
+function DepartmentSection({
   id,
   icon: Icon,
   title,
   description,
-  includes,
-  process,
+  services,
   ctaLabel,
   serviceParam,
-}: ServiceSectionProps) {
+}: DepartmentSectionProps) {
   return (
     <section id={id} className="py-20 border-b border-auxano-border last:border-b-0 scroll-mt-20">
+      {/* Header */}
       <div className="flex items-center gap-4 mb-6">
         <div className="p-3 bg-auxano-primary/10 rounded-xl">
           <Icon className="text-auxano-primary" size={32} />
@@ -38,42 +43,57 @@ function ServiceSection({
         <h2 className="text-2xl md:text-3xl font-bold text-white">{title}</h2>
       </div>
 
-      <p className="text-gray-400 text-lg mb-8 max-w-3xl">{description}</p>
+      <p className="text-gray-400 text-lg mb-10 max-w-3xl leading-relaxed">{description}</p>
 
-      <div className="grid md:grid-cols-2 gap-8 mb-8">
-        {/* What's Included */}
-        <div>
-          <h3 className="text-sm font-semibold text-auxano-secondary uppercase tracking-wider mb-4">
-            What&apos;s Included
-          </h3>
-          <ul className="space-y-2">
-            {includes.map((item) => (
-              <li key={item} className="flex items-start gap-2 text-gray-300 text-sm">
-                <span className="text-auxano-primary mt-1">✓</span>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* How It Works */}
-        <div>
-          <h3 className="text-sm font-semibold text-auxano-secondary uppercase tracking-wider mb-4">
-            How It Works
-          </h3>
-          <div className="space-y-4">
-            {process.map((p, i) => (
-              <div key={p.step} className="flex items-center gap-4">
-                <div className="w-8 h-8 rounded-full bg-auxano-primary/20 text-auxano-primary text-sm font-bold flex items-center justify-center flex-shrink-0">
-                  {i + 1}
-                </div>
+      {/* Services grid */}
+      <div className="mb-10">
+        <h3 className="text-sm font-semibold text-auxano-secondary uppercase tracking-wider mb-6">
+          Services Included
+        </h3>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {services.map((svc) => (
+            <div
+              key={svc.name}
+              className="bg-auxano-dark-base border border-auxano-border rounded-xl p-5 hover:border-auxano-primary/50 transition-colors duration-300"
+            >
+              <div className="flex items-start gap-3">
+                <span className="text-auxano-primary mt-0.5 flex-shrink-0">✓</span>
                 <div>
-                  <div className="text-white font-semibold text-sm">{p.step}</div>
-                  <div className="text-gray-400 text-xs">{p.label}</div>
+                  <div className="text-white font-semibold text-sm mb-1">{svc.name}</div>
+                  <div className="text-gray-400 text-xs leading-relaxed">{svc.description}</div>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* How It Works */}
+      <div className="mb-10">
+        <h3 className="text-sm font-semibold text-auxano-secondary uppercase tracking-wider mb-6">
+          How It Works
+        </h3>
+        <div className="flex flex-col sm:flex-row gap-0 sm:gap-0 relative">
+          {["Discovery Call", "Scoping & Planning", "Delivery", "Handoff & Support"].map((step, i) => (
+            <div key={step} className="flex-1 flex items-start gap-3 sm:flex-col sm:items-center sm:text-center relative">
+              {/* Connector line */}
+              {i < 3 && (
+                <div className="hidden sm:block absolute top-4 left-1/2 w-full h-px bg-auxano-border" />
+              )}
+              <div className="relative z-10 w-8 h-8 rounded-full bg-auxano-primary/20 border border-auxano-primary/40 text-auxano-primary text-sm font-bold flex items-center justify-center flex-shrink-0">
+                {i + 1}
+              </div>
+              <div className="sm:mt-3">
+                <div className="text-white font-semibold text-sm">{step}</div>
+                <div className="text-gray-500 text-xs mt-0.5">
+                  {i === 0 && "We learn about your business and goals"}
+                  {i === 1 && "We scope the work, timeline, and deliverables"}
+                  {i === 2 && "We build, test, and iterate with your feedback"}
+                  {i === 3 && "You get the keys — with docs, training, and ongoing access"}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -87,88 +107,120 @@ function ServiceSection({
   );
 }
 
-const servicesData: ServiceSectionProps[] = [
+const departmentsData: DepartmentSectionProps[] = [
   {
-    id: "strategy",
+    id: "web-software",
+    icon: Code2,
+    title: "Web & Software",
+    description:
+      "We design, build, and maintain custom software and websites that give your business a working digital foundation. From front-end design to ongoing upkeep, we handle the build and keep it running so you don't have to.",
+    services: [
+      {
+        name: "Custom Software Development",
+        description: "We build software tailored to your specific workflows and needs.",
+      },
+      {
+        name: "Website Design & Development",
+        description: "Full custom sites built around your brand and business goals.",
+      },
+      {
+        name: "Front-End Design",
+        description: "Clean, modern interfaces designed to convert and retain visitors.",
+      },
+      {
+        name: "Website Maintenance & Upkeep",
+        description: "Ongoing updates, security patches, and performance monitoring.",
+      },
+      {
+        name: "SEO & GEO Optimization",
+        description: "We optimize your site to rank in traditional search and generative engines.",
+      },
+      {
+        name: "Hosting & Infrastructure Management",
+        description: "We handle the backend so your site stays fast and online.",
+      },
+    ],
+    ctaLabel: "Start a Web or Software Project",
+    serviceParam: "web-software",
+  },
+  {
+    id: "ai-strategy",
     icon: Brain,
-    title: "AI Strategy Consulting",
-    description: "We audit your business operations, identify where AI can save time and money, and deliver a clear implementation roadmap.",
-    includes: [
-      "Business process audit",
-      "AI opportunity analysis",
-      "ROI projections",
-      "Prioritized implementation roadmap",
-      "Technology recommendations",
+    title: "AI Strategy",
+    description:
+      "We help you figure out where AI fits in your business, then we build and deploy it. This department covers both the strategic planning and the hands-on implementation of agents, bots, and automated workflows.",
+    services: [
+      {
+        name: "AI Readiness Audit",
+        description: "We assess where your business stands and where AI can move the needle.",
+      },
+      {
+        name: "Opportunity Roadmap",
+        description: "A prioritized plan of where to apply AI, in what order, and what it'll cost.",
+      },
+      {
+        name: "Custom Implementation Plan",
+        description: "A step-by-step blueprint tailored to your tools, team, and timeline.",
+      },
+      {
+        name: "Tool & Vendor Selection",
+        description: "We cut through the noise and match you to the right AI tools for your operation.",
+      },
+      {
+        name: "Workflow & Process Review",
+        description: "We map your current workflows and identify what's ripe for automation or AI assist.",
+      },
+      {
+        name: "AI Agents & Bots",
+        description: "Custom-built agents that handle tasks, answer questions, or run processes for you.",
+      },
+      {
+        name: "Phone Call Automation",
+        description: "Voice bots that handle inbound or outbound calls at scale.",
+      },
+      {
+        name: "Cold Email Automation",
+        description: "Automated outreach systems built to generate leads without manual effort.",
+      },
+      {
+        name: "Automated Workflows",
+        description: "End-to-end automations that connect your tools and eliminate repetitive work.",
+      },
+      {
+        name: "Ongoing Advisory",
+        description: "Retainer-based strategic guidance as your business and AI evolve.",
+      },
     ],
-    process: [
-      { step: "Discovery Call", label: "We learn about your business and goals" },
-      { step: "Deep Dive Audit", label: "We analyze your operations and data" },
-      { step: "Strategy Delivery", label: "You get a clear, actionable roadmap" },
-    ],
-    ctaLabel: "Get Started with Strategy",
-    serviceParam: "strategy",
+    ctaLabel: "Start with AI Strategy",
+    serviceParam: "ai-strategy",
   },
   {
-    id: "builds",
-    icon: Zap,
-    title: "Website & App Development",
-    description: "We build AI-powered websites, web applications, and custom tools tailored to your business needs.",
-    includes: [
-      "Custom design",
-      "Responsive development",
-      "AI feature integration",
-      "Performance optimization",
-      "Deployment & hosting",
-      "Training & documentation",
+    id: "business-consulting",
+    icon: Briefcase,
+    title: "Business Consulting",
+    description:
+      "Not every problem needs an AI solution, and we'll tell you when it doesn't. This department exists to meet you where you are — we'll help you find the right solution for your business, AI or otherwise, so the door stays open to work on whatever actually moves the needle.",
+    services: [
+      {
+        name: "Business Assessment",
+        description:
+          "End-to-end review of your operation to identify what's working, what's leaking, and where to focus.",
+      },
+      {
+        name: "Growth Strategy",
+        description: "A prioritized plan for scaling revenue, based on your capacity and market.",
+      },
+      {
+        name: "Operational Review",
+        description: "We map your processes and find the friction points.",
+      },
+      {
+        name: "Ongoing Advisory",
+        description: "Retainer-based guidance as your business grows.",
+      },
     ],
-    process: [
-      { step: "Requirements", label: "We define scope, features, and timeline" },
-      { step: "Design & Build", label: "We design and develop your solution" },
-      { step: "Launch & Handoff", label: "We deploy, train your team, and hand over" },
-    ],
-    ctaLabel: "Get Started with a Build",
-    serviceParam: "build",
-  },
-  {
-    id: "analytics",
-    icon: BarChart3,
-    title: "Data Analytics & Dashboards",
-    description: "We turn your business data into actionable insights with custom dashboards and automated reporting.",
-    includes: [
-      "Data audit & cleanup",
-      "Custom dashboard design",
-      "Interactive visualizations",
-      "Automated reports",
-      "KPI tracking",
-      "Data pipeline setup",
-    ],
-    process: [
-      { step: "Data Assessment", label: "We review your data sources and quality" },
-      { step: "Dashboard Build", label: "We design and build your dashboards" },
-      { step: "Training & Iteration", label: "We train your team and refine together" },
-    ],
-    ctaLabel: "Get Started with Analytics",
-    serviceParam: "analytics",
-  },
-  {
-    id: "support",
-    icon: RefreshCw,
-    title: "Ongoing Support & Retainers",
-    description: "Monthly partnership to maintain, optimize, and expand your AI systems as your business grows.",
-    includes: [
-      "Priority support",
-      "System monitoring",
-      "Performance optimization",
-      "Feature updates",
-      "Monthly strategy check-ins",
-    ],
-    process: [
-      { step: "Onboarding", label: "We learn your systems and set up monitoring" },
-      { step: "Monthly Cycles", label: "Continuous improvements and support" },
-      { step: "Quarterly Reviews", label: "Strategic reviews and roadmap updates" },
-    ],
-    ctaLabel: "Get Started with Support",
-    serviceParam: "support",
+    ctaLabel: "Book a Business Consulting Call",
+    serviceParam: "business-consulting",
   },
 ];
 
@@ -176,15 +228,30 @@ export default function ServicesPage() {
   return (
     <div className="bg-auxano-darker min-h-screen">
       <div className="max-w-4xl mx-auto px-6 py-24">
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-          Our Services
-        </h1>
-        <p className="text-gray-400 text-lg mb-12 max-w-2xl">
-          From strategy to execution to ongoing support — everything your business needs to grow with AI.
+        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Our Services</h1>
+        <p className="text-gray-400 text-lg mb-4 max-w-2xl leading-relaxed">
+          Three departments. Everything your business needs to build a digital foundation, deploy AI that works, and grow with a clear strategy.
         </p>
 
-        {servicesData.map((service) => (
-          <ServiceSection key={service.id} {...service} />
+        {/* Department jump links */}
+        <div className="flex flex-wrap gap-3 mb-16">
+          {departmentsData.map((dept) => {
+            const Icon = dept.icon;
+            return (
+              <a
+                key={dept.id}
+                href={`#${dept.id}`}
+                className="flex items-center gap-2 px-4 py-2 bg-auxano-dark-base border border-auxano-border rounded-lg text-gray-300 text-sm hover:border-auxano-primary hover:text-white transition-all duration-200"
+              >
+                <Icon size={14} className="text-auxano-primary" />
+                {dept.title}
+              </a>
+            );
+          })}
+        </div>
+
+        {departmentsData.map((dept) => (
+          <DepartmentSection key={dept.id} {...dept} />
         ))}
       </div>
     </div>
