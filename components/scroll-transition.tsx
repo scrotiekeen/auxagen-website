@@ -22,7 +22,7 @@ export function ScrollTransition() {
         className="relative h-24 -mt-24 pointer-events-none"
         style={{
           zIndex: 20,
-          background: "linear-gradient(to bottom, transparent, #0D1117)",
+          background: "linear-gradient(to bottom, transparent, #FFFFFF)",
         }}
       />
 

@@ -17,10 +17,10 @@ export function Nav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-auxano-darker/80 backdrop-blur-md border-b border-auxano-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-auxano-border">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-center relative">
         {/* Logo — centered */}
-        <Link href="/" className="text-xl font-bold text-white tracking-tight">
+        <Link href="/" className="text-xl font-bold text-gray-900 tracking-tight">
           Auxano Agency
         </Link>
 
@@ -34,7 +34,7 @@ export function Nav() {
                 "text-sm transition-colors",
                 pathname === link.href
                   ? "text-auxano-secondary"
-                  : "text-gray-400 hover:text-white"
+                  : "text-gray-500 hover:text-gray-900"
               )}
             >
               {link.label}
@@ -50,7 +50,7 @@ export function Nav() {
 
         {/* Mobile Toggle — right side */}
         <button
-          className="md:hidden text-gray-400 hover:text-white absolute right-6"
+          className="md:hidden text-gray-500 hover:text-gray-900 absolute right-6"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -60,7 +60,7 @@ export function Nav() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-auxano-darker border-t border-auxano-border">
+        <div className="md:hidden bg-white border-t border-auxano-border">
           <div className="px-6 py-4 flex flex-col gap-4">
             {navLinks.map((link) => (
               <Link
@@ -71,7 +71,7 @@ export function Nav() {
                   "text-sm transition-colors",
                   pathname === link.href
                     ? "text-auxano-secondary"
-                    : "text-gray-400 hover:text-white"
+                    : "text-gray-500 hover:text-gray-900"
                 )}
               >
                 {link.label}

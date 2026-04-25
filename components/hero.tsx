@@ -27,18 +27,12 @@ export function Hero() {
   return (
     <section className="relative min-h-screen hero-space-bg overflow-hidden">
 
-      {/* ── Layer 0a: Deep space star field (sparse — abyss feel) ───── */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="hero-starfield-small" style={{ opacity: 0.35 }} />
-        <div className="hero-starfield-bright" style={{ opacity: 0.5 }} />
-      </div>
-
       {/* ── Layer 0b: CPU circuit board — scaled for mobile ──────────── */}
       <div className="absolute inset-0 z-0">
         {/* Mobile: slice (overflows to frame properly), same as desktop */}
         <div className="block md:hidden absolute inset-0 overflow-hidden">
           <AuxanoChip
-            className="w-full h-full text-[#1a4a2a] opacity-70"
+            className="w-full h-full text-emerald-500/20 opacity-80"
             width="100%"
             height="100%"
             preserveAspectRatio="xMidYMid slice"
@@ -48,7 +42,7 @@ export function Hero() {
         </div>
         <div className="hidden md:block absolute inset-0">
           <AuxanoChip
-            className="w-full h-full text-[#1a4a2a]"
+            className="w-full h-full text-emerald-500/20"
             width="100%"
             height="100%"
             preserveAspectRatio="xMidYMid slice"
@@ -58,9 +52,9 @@ export function Hero() {
         </div>
       </div>
 
-      {/* ── Layer 1a: Subtle nebula wash (just one faint emerald hint) ── */}
+      {/* ── Layer 1a: Subtle emerald bloom wash ── */}
       <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
-        <div className="hero-nebula-emerald" style={{ opacity: 0.04 }} />
+        <div className="hero-nebula-emerald" style={{ opacity: 0.3 }} />
       </div>
 
       {/* ── Layer 1b: Dot grid ──────────────────────────────────────── */}
@@ -135,13 +129,13 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
         >
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-[1.08] tracking-tight mb-3 hero-headline">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 leading-[1.08] tracking-tight mb-3 hero-headline">
             Solutions Engineered<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-500">
               For Your Business
             </span>
           </h1>
-          <p className="text-emerald-300/60 font-light tracking-widest uppercase text-xs">
+          <p className="text-emerald-700/60 font-light tracking-widest uppercase text-xs">
             Growing With You, Not Past You.
           </p>
         </motion.div>
@@ -162,7 +156,7 @@ export function Hero() {
           </Link>
           <Link
             href="/services"
-            className="border border-emerald-500/30 text-emerald-400 font-semibold px-8 py-3.5 rounded-lg hover:bg-emerald-500/10 hover:border-emerald-400/50 transition-all text-center text-sm tracking-wide backdrop-blur-sm"
+            className="border border-emerald-600/40 text-emerald-700 font-semibold px-8 py-3.5 rounded-lg hover:bg-emerald-500/10 hover:border-emerald-600/60 transition-all text-center text-sm tracking-wide backdrop-blur-sm"
           >
             Our Services
           </Link>

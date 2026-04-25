@@ -40,10 +40,10 @@ function DepartmentSection({
         <div className="p-3 bg-auxano-primary/10 rounded-xl">
           <Icon className="text-auxano-primary" size={32} />
         </div>
-        <h2 className="text-2xl md:text-3xl font-bold text-white">{title}</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-900">{title}</h2>
       </div>
 
-      <p className="text-gray-400 text-lg mb-10 max-w-3xl leading-relaxed">{description}</p>
+      <p className="text-gray-600 text-lg mb-10 max-w-3xl leading-relaxed">{description}</p>
 
       {/* Services grid */}
       <div className="mb-10">
@@ -59,8 +59,8 @@ function DepartmentSection({
               <div className="flex items-start gap-3">
                 <span className="text-auxano-primary mt-0.5 flex-shrink-0">✓</span>
                 <div>
-                  <div className="text-white font-semibold text-sm mb-1">{svc.name}</div>
-                  <div className="text-gray-400 text-xs leading-relaxed">{svc.description}</div>
+                  <div className="text-gray-900 font-semibold text-sm mb-1">{svc.name}</div>
+                  <div className="text-gray-600 text-xs leading-relaxed">{svc.description}</div>
                 </div>
               </div>
             </div>
@@ -109,8 +109,8 @@ function HowItWorks() {
 
   return (
     <section id="how-it-works" className="py-20 border-b border-auxano-border scroll-mt-20">
-      <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">How It Works</h2>
-      <p className="text-gray-400 text-lg mb-12 max-w-2xl leading-relaxed">
+      <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">How It Works</h2>
+      <p className="text-gray-600 text-lg mb-12 max-w-2xl leading-relaxed">
         Every engagement follows the same proven pipeline — no stage gets skipped, no stage gets blurred into the next.
       </p>
       <div className="space-y-0">
@@ -128,10 +128,10 @@ function HowItWorks() {
             {/* Content */}
             <div className="pb-10">
               <div className="flex items-baseline gap-3 mb-1">
-                <h3 className="text-white font-semibold text-base">{stage.title}</h3>
+                <h3 className="text-gray-900 font-semibold text-base">{stage.title}</h3>
                 <span className="text-auxano-primary text-xs font-mono">{stage.duration}</span>
               </div>
-              <p className="text-gray-400 text-sm leading-relaxed max-w-lg">{stage.desc}</p>
+              <p className="text-gray-600 text-sm leading-relaxed max-w-lg">{stage.desc}</p>
             </div>
           </div>
         ))}
@@ -261,8 +261,8 @@ export default function ServicesPage() {
   return (
     <div className="bg-auxano-darker min-h-screen">
       <div className="max-w-4xl mx-auto px-6 py-24">
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Our Services</h1>
-        <p className="text-gray-400 text-lg mb-4 max-w-2xl leading-relaxed">
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Our Services</h1>
+        <p className="text-gray-600 text-lg mb-4 max-w-2xl leading-relaxed">
           Three departments. Everything your business needs to build a digital foundation, deploy AI that works, and grow with a clear strategy.
         </p>
 
@@ -270,7 +270,7 @@ export default function ServicesPage() {
         <div className="flex flex-wrap gap-3 mb-16">
           <a
             href="#how-it-works"
-            className="flex items-center gap-2 px-4 py-2 bg-auxano-dark-base border border-auxano-border rounded-lg text-gray-300 text-sm hover:border-auxano-primary hover:text-white transition-all duration-200"
+            className="flex items-center gap-2 px-4 py-2 bg-white border border-auxano-border rounded-lg text-gray-600 text-sm hover:border-auxano-primary hover:text-gray-900 transition-all duration-200"
           >
             How It Works
           </a>
@@ -280,7 +280,7 @@ export default function ServicesPage() {
               <a
                 key={dept.id}
                 href={`#${dept.id}`}
-                className="flex items-center gap-2 px-4 py-2 bg-auxano-dark-base border border-auxano-border rounded-lg text-gray-300 text-sm hover:border-auxano-primary hover:text-white transition-all duration-200"
+                className="flex items-center gap-2 px-4 py-2 bg-white border border-auxano-border rounded-lg text-gray-600 text-sm hover:border-auxano-primary hover:text-gray-900 transition-all duration-200"
               >
                 <Icon size={14} className="text-auxano-primary" />
                 {dept.title}
