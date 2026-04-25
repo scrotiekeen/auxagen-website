@@ -112,7 +112,7 @@ export function ServicesOverview() {
     <section className="bg-auxano-darker py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <motion.h2
-          className="text-4xl md:text-5xl lg:text-6xl font-bold text-white text-center mb-4"
+          className="text-4xl md:text-5xl lg:text-6xl font-bold text-white text-left mb-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -121,7 +121,7 @@ export function ServicesOverview() {
           What We Do
         </motion.h2>
         <motion.p
-          className="text-gray-400 text-lg md:text-xl text-center mb-14 max-w-2xl mx-auto"
+          className="text-gray-400 text-lg md:text-xl text-left mb-14 max-w-2xl"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
