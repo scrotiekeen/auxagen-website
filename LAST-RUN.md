@@ -3,142 +3,43 @@
 ## Status: success
 
 ## What was attempted
-Rebuild the "What We Do" homepage section and the /services detail page with the new 3-department structure from docs/departments.md (Web & Software, AI Strategy, Business Consulting). Internal Sales/Marketing divisions excluded.
+Circuit board cleanup — reduce paths from 24 to 14 for a cleaner look over the video background.
 
 ## What succeeded
-- **components/services-overview.tsx** — Complete rewrite. 3 department cards with Framer Motion stagger entrance (fade-in + slide-up). Icon, name, description, full service list, "View details →" link. Typewriter updated to 5 broader phrases. Mobile-responsive (1 col → 3 col lg).
-- **app/services/page.tsx** — Complete rewrite. Jump-link nav at top. 3 department sections (anchors: `#web-software`, `#ai-strategy`, `#business-consulting`). Each: icon header, description, service card grid (2 col), How It Works (4 steps), CTA → `/contact?service=<param>`. Metadata updated.
-- TypeScript type error fixed (Framer Motion ease tuple typed with `as const`).
-- Build passes clean. Committed: `c1922e4`.
+- **`components/ui/cpu-architecture.tsx`**: PATHS array trimmed from 24 to 14. Removed: corner staircase sweeps (4), horizontal branch paths (2), inner top shortcuts (2), and one redundant path from each of left/right side groups. Kept all 4 cardinal groups (left, right, top, bottom) with their main artery and two clean sweeps each. ARTERY_INDICES updated to match new indices `{1, 4, 7, 8, 11, 12}`. Secondary line `strokeOpacity` reduced to 0.4 and stroke thinned from 1.2 to 1. Chip body, pins, corner accents, glow effects, and light orbs all untouched.
+- **`app/globals.css`**: cpu-line classes trimmed from 24 down to 14, with animation durations/delays preserved from their original counterparts. Removed cpu-line-15 through cpu-line-24 entirely.
+- Build passes clean.
+- Committed: `144a9fa`
 
 ## What failed
 Nothing.
 
 ## Current state
-Buildable. Committed, not pushed. No uncommitted changes. Next: review visually (incognito), polish other sections, deploy.
+Buildable. Committed, not pushed. Circuit board has 14 balanced paths radiating cleanly from chip center with symmetry on all four sides. Less visual noise over the video background. To revert, see git history.
 
 ---
 
-# Previous Run — 2026-04-18 (Session 4)
+# Previous Run — 2026-04-24 (Session before this)
 
-## Task
-Cinematic scroll transition between Hero and Services sections.
+## Status: success
 
-## What Was Built
+## What was attempted
+Full light mode swap across the entire site as a visual preview experiment. No toggle logic — straight color replacement.
 
-### components/scroll-transition.tsx (new file)
-`ScrollTransition` wraps both `Hero` and `ServicesOverview` and orchestrates a scroll-linked animation sequence.
+## What succeeded
+- `app/globals.css`: Brand variables swapped (dark-base → #F8FAFC, darker → #FFFFFF, card → #FFFFFF, border → #E2E8F0, secondary/light → darker emerald shades for contrast on light bg). Body class → `bg-white text-gray-900`. Hero space bg → emerald-tinted white gradient. Vignette made very subtle. Headline text-shadow adapted for light.
+- `components/hero.tsx`: Star field divs removed. Circuit board → `text-emerald-500/20` (subtle emerald lines on white). Headline → text-gray-900, gradient from-emerald-600. Subtitle → text-emerald-700/60. "Our Services" outline button → text-emerald-700 / border-emerald-600.
+- `components/nav.tsx`: `bg-white/90`, logo `text-gray-900`, inactive links `text-gray-500 hover:text-gray-900`, mobile menu `bg-white`.
+- `components/footer.tsx`: text-white → text-gray-900, gray-400 → gray-500.
+- `components/services-overview.tsx`: All text swapped to dark-on-light.
+- `components/showcase.tsx`: text-white → text-gray-900, text-gray-400 → text-gray-600.
+- `components/bottom-cta.tsx`: Gradient from-emerald-50/to-white, text-gray-900, text-emerald-700.
+- `components/scroll-transition.tsx`: Bridge gradient target → #FFFFFF.
+- `app/services/page.tsx`: All headings, body text, jump-link nav cards swapped to light.
+- Build passes clean. Committed: `4798909`.
 
-**Architecture:**
-- 200vh container with the hero held `position: sticky; top: 0; height: 100vh`
-- `useScroll({ target, offset: ["start start", "end end"] })` — maps `scrollYProgress` 0→1 over exactly the 100vh window the hero is sticky
-- All scroll transforms are GPU-accelerated (opacity, scale, translate)
+## What failed
+Nothing.
 
-**Animation sequence as user scrolls:**
-1. **0.07–0.62**: Glowing emerald scan line sweeps from top to bottom with bloom glow above and below
-2. **0.18–0.84**: Scatter particles (12 emerald dots) burst radially outward from chip center
-3. **0.30–0.54**: Ghost echo lines appear at 36% and 63% viewport height — residue of the scan passage
-4. **0.42–0.95**: Dark abyss overlay creeps in (radial gradient matching hero background)
-5. **0.45–0.90**: Hero content fades out while subtly scaling up (1.0→1.07) — falling-into-void effect
-6. **whileInView**: Services section slides up from `y:36` with a spring ease reveal
-
-**`ScatterParticle` sub-component** — receives `MotionValue<number>` as prop and calls `useTransform` internally, avoiding hooks-in-loops rule violation.
-
-### app/page.tsx
-- Removed direct `Hero` + `ServicesOverview` imports
-- Replaced with single `<ScrollTransition />` component
-
-## Build Status
-✓ Clean build — TypeScript clean, all 5 routes generated
-
-## What's Next
-- Corbin to review transition feel at localhost:3000
-- Possible tweaks: scan line speed, particle distance, overlay darkness
-- Deployment: Resend API key → GitHub repo → Vercel
-
----
-
-# Previous Run — 2026-04-18 (Session 3)
-
-## Task
-Deep Space Abyss hero background.
-
-## What Was Done
-
-### components/hero.tsx
-- Changed section background from `bg-auxano-darker` to `hero-space-bg` (deep cosmic radial gradient)
-- Added **Layer 0a: star field** (z-0, before CPU board) — 3 CSS class divs (`hero-starfield-small`, `hero-starfield-medium`, `hero-starfield-bright`) using box-shadow star technique
-- Added **Layer 1a: nebula washes** (z-[1]) — 3 large blurred color divs: emerald (upper-right), purple/indigo (lower-left), blue (upper-left)
-- Reduced concentric ring opacity `0.07 → 0.04` so rings don't compete with stars
-- Updated `PARTICLES` array: colors now mix white (`#ffffff`), blue-white (`#e0f0ff`, `#c0d8ff`, `#a0c4ff`) with emerald family; 1px–2.5px sizes; 18–40s durations for sense of vast scale
-
-### app/globals.css
-- Added `.hero-space-bg` — deep radial gradient: `#060B14 → #080e18 → #0a0f1a → #020408`
-- Added `.hero-starfield-small` — 84 tiny 1px white stars, slow drift 130s cycle
-- Added `.hero-starfield-medium` — 40 medium 2px blue-white stars, counter-drift 160s reverse
-- Added `.hero-starfield-bright` — 15 bright 2px stars with 2px blur glow, 4.5s twinkle
-- Added `.hero-nebula-emerald`, `.hero-nebula-purple`, `.hero-nebula-blue` — opacity 0.07–0.11, blur 90–110px
-- Updated `.hero-vignette` — deeper: `rgba(2,4,8,0.95)` at edges
-- Updated `.hero-ambient-bloom` — expanded to 780×380px, stronger glow into void
-- Added keyframes: `hero-star-drift-slow`, `hero-star-drift-med`, `hero-star-twinkle`
-
-## Build Status
-TypeScript check: clean (no errors)
-
-## What's Next
-- Corbin to review at localhost:3000
-- Possible tweaks: star density, nebula intensity, drift speed
-- Deployment: Resend API key → GitHub repo → Vercel
-
----
-
-# Previous Run — 2026-04-18 (Session 2)
-
-## What Was Done
-Hero CPU chip visual polish pass — all 5 fixes applied to `components/ui/cpu-architecture.tsx`.
-
-### Changes
-1. **Chip body less boxy** — replaced flat `#0e1a0e` fill with `radialGradient` (center lighter, edges darker). `rx` increased `12→16` on body, `6→12` on inner face.
-2. **Pins glow with emerald** — connection gradient updated to `#10B981 → #1a3a2a` (full emerald top). Added `auxano-pin-glow` filter (`feDropShadow` in emerald, opacity 0.7).
-3. **Corner accents bolder** — `opacity` 0.55→0.85, `strokeWidth` 1.8→2.5, L-shapes extended 50% (h/v 18/14 → 27/21).
-4. **Circuit line hierarchy** — split 24 paths into two render groups: 6 cardinal arteries (indices 1,5,9,10,13,14) at `strokeWidth 2.2` / `stroke #2a5a3a`; 18 secondary paths remain at `1.2` / `currentColor`.
-5. **Orbs more visible** — mask `strokeWidth` `3→5`; artery orbs `r=28-32`, secondary orbs `r=18-22`.
-
-### Files Modified
-- `components/ui/cpu-architecture.tsx`
-
-### Build Status
-TypeScript check: clean (no errors)
-
----
-
-# Previous Run — 2026-04-18 (Session 1)
-
-## What was done
-CPU chip now acts as a visual frame around the headline text instead of displaying text inside the SVG.
-
-### Changes made
-
-**`components/ui/cpu-architecture.tsx`**
-- Removed `<text>` elements: "AUXANO AGENCY" and "INTELLIGENCE"
-- Removed center indicator `<circle>` dot
-- Enlarged chip body: `x=390, y=300, width=420, height=200, rx=12` (was 260×100)
-- Updated inner chip face proportionally with 8px padding: `x=398, y=308, width=404, height=184`
-- Updated corner accent L-marks to match new chip corners
-- Updated connection pins: 15 top/bottom pins across the wider top edge, 7 left/right pins along the taller sides
-- Enlarged ambient glow rect to match new chip area
-- Removed `text` prop from destructured params (prop kept for API compat, just unused)
-- All 24 circuit paths unchanged — their endpoints already fall inside the new (larger) chip body
-
-**`components/hero.tsx`**
-- Removed Layer 5 (`.hero-text-backdrop` div) entirely
-- Changed content layout from split (text top + spacer + CTAs bottom) to fully centered (`flex flex-col items-center justify-center min-h-screen`)
-- Stacked: badge → headline → subtitle → typewriter → CTAs, all centered over chip
-- Reduced headline from `text-4xl/6xl/7xl` to `text-4xl/5xl/6xl` so it fits within chip frame
-- Removed `animateText` and `text` props from `<AuxanoChip>` usage
-
-**`app/globals.css`**
-- Removed `.hero-text-backdrop` class (no longer needed)
-
-## Build status
-✓ Clean build — all 7 pages generated successfully
+## Current state
+Buildable. Committed, not pushed. Site is in light mode. To revert to dark, restore brand color variables from commit `6941ccf` (the commit before this one) in globals.css, and restore hero.tsx star fields + original text colors.

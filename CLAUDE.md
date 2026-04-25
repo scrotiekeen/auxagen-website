@@ -22,7 +22,7 @@ Website for Auxano Agency (brand: Auxagen), a full-stack business growth agency 
 - `/api/contact` — POST route, validates + sends email via Resend
 
 ### Key Components
-- `components/ui/cpu-architecture.tsx` — Full-screen animated circuit board SVG (24 paths, 34 pins, pulsing glow, corner accents, line hierarchy). ViewBox 1200x800 with preserveAspectRatio. The chip frames the headline text — no text inside the SVG itself.
+- `components/ui/cpu-architecture.tsx` — Full-screen animated circuit board SVG (14 paths, 34 pins, pulsing glow, corner accents, line hierarchy). ViewBox 1200x800 with preserveAspectRatio. The chip frames the headline text — no text inside the SVG itself.
 - `components/hero.tsx` — Deep space abyss background, sparse star field, floating particles, concentric rings, vignette. Headline + subtitle + CTAs centered over the chip frame.
 - `components/scroll-transition.tsx` — Wraps Hero + ServicesOverview. Natural scroll (no sticky), gradient bridge between sections, services fade-in on viewport entry.
 - `components/typewriter.tsx` — Rotating phrase typewriter effect (moved to services section)
@@ -70,5 +70,5 @@ Website for Auxano Agency (brand: Auxagen), a full-stack business growth agency 
 
 ## Last Session
 - **Date:** 2026-04-24
-- **What was done:** Rebuilt the "What We Do" section (services-overview.tsx) and the services detail page (app/services/page.tsx) with the new 3-department structure from docs/departments.md. Homepage now shows 3 animated department cards (Web & Software, AI Strategy, Business Consulting) with icons, descriptions, service lists, and stagger Framer Motion entrance animation. Typewriter phrases updated to cover all three departments. Services page shows 3 full department sections with every service listed (name + description in a card grid), jump-link nav, How It Works steps, and CTA buttons with correct contact params. No internal Sales/Marketing divisions appear. Build passes clean.
-- **What's next:** Continue polishing other sections (showcase, contact, footer). Deploy when ready. Corbin to test with incognito to bypass cache.
+- **What was done:** Circuit board cleanup — reduced PATHS from 24 to 14. Removed corner staircases (4), redundant branch paths (2), inner shortcuts (2), and one noisy path from each side group. Kept all 4 cardinal groups with clean sweeps + arteries. ARTERY_INDICES updated to `{1,4,7,8,11,12}`. Secondary line opacity lowered to 0.4, stroke thinned to 1. CSS cpu-line classes trimmed from 24 to 14. Chip body, pins, corner accents, glow effects all intact. Build passes clean. Committed `144a9fa`.
+- **What's next:** Corbin reviews over video background at localhost (use incognito). May continue polishing other sections or move to deploy once satisfied.
