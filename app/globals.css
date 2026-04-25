@@ -147,7 +147,7 @@
   animation-timing-function: cubic-bezier(0.75, -0.01, 0, 0.99);
 }
 
-/* All cpu-line-* definitions below (1–24) for the 1200x800 viewBox — chip at (600,400) */
+/* All cpu-line-* definitions below (1–14) for the 1200x800 viewBox — chip at (600,400) */
 .cpu-line-1 {
   offset-path: path("M 0 200 h 360 q 16 0 16 16 v 124 q 0 16 16 16 h 78");
   animation-duration: 5s;
@@ -164,109 +164,59 @@
   animation-duration: 6s;
 }
 .cpu-line-4 {
-  offset-path: path("M 0 300 h 280 q 16 0 16 16 v 54 q 0 16 16 16 h 158");
-  animation-delay: 3s;
-  animation-duration: 3s;
-}
-.cpu-line-5 {
   offset-path: path("M 1200 200 h -360 q -16 0 -16 16 v 134 q 0 16 -16 16 h -78");
   animation-delay: 9s;
   animation-duration: 4s;
 }
-.cpu-line-6 {
+.cpu-line-5 {
   offset-path: path("M 1200 400 h -470");
   animation-delay: 3s;
   animation-duration: 7s;
 }
-.cpu-line-7 {
+.cpu-line-6 {
   offset-path: path("M 1200 600 h -260 q -16 0 -16 -16 v -140 q 0 -16 -16 -16 h -178");
   animation-delay: 4s;
   animation-duration: 4s;
 }
-.cpu-line-8 {
-  offset-path: path("M 1200 310 h -240 q -16 0 -16 16 v 24 q 0 16 -16 16 h -198");
-  animation-delay: 3s;
-  animation-duration: 3s;
-}
-.cpu-line-9 {
+.cpu-line-7 {
   offset-path: path("M 240 0 v 200 q 0 16 16 16 h 214 q 16 0 16 16 v 118");
   animation-duration: 4s;
   animation-delay: 2s;
 }
-.cpu-line-10 {
+.cpu-line-8 {
   offset-path: path("M 540 0 v 350");
   animation-duration: 3s;
   animation-delay: 7s;
 }
-.cpu-line-11 {
+.cpu-line-9 {
   offset-path: path("M 640 0 v 350");
   animation-duration: 3s;
   animation-delay: 1.5s;
 }
-.cpu-line-12 {
+.cpu-line-10 {
   offset-path: path("M 940 0 v 200 q 0 16 -16 16 h -238 q -16 0 -16 16 v 118");
   animation-duration: 5s;
   animation-delay: 5s;
 }
-.cpu-line-13 {
+.cpu-line-11 {
   offset-path: path("M 240 800 v -160 q 0 -16 16 -16 h 214 q 16 0 16 -16 v -158");
   animation-duration: 6s;
   animation-delay: 3.5s;
 }
-.cpu-line-14 {
+.cpu-line-12 {
   offset-path: path("M 530 800 v -350");
   animation-duration: 2.5s;
   animation-delay: 8s;
 }
-.cpu-line-15 {
+.cpu-line-13 {
   offset-path: path("M 660 800 v -350");
   animation-duration: 3.5s;
   animation-delay: 4s;
 }
-.cpu-line-16 {
+.cpu-line-14 {
   offset-path: path("M 960 800 v -180 q 0 -16 -16 -16 h -240 q -16 0 -16 -16 v -138");
   animation-duration: 4.5s;
   animation-delay: 1s;
-}
-.cpu-line-17 {
-  offset-path: path("M 60 60 h 160 q 16 0 16 16 v 120 q 0 16 16 16 h 160 q 16 0 16 16 v 122 h 42");
-  animation-duration: 7s;
-  animation-delay: 6s;
-}
-.cpu-line-18 {
-  offset-path: path("M 1140 60 h -160 q -16 0 -16 16 v 120 q 0 16 -16 16 h -160 q -16 0 -16 16 v 122 h -42");
-  animation-duration: 5.5s;
-  animation-delay: 9s;
-}
-.cpu-line-19 {
-  offset-path: path("M 60 740 h 120 q 16 0 16 -16 v -120 q 0 -16 16 -16 h 120 q 16 0 16 -16 v -122 h 122");
-  animation-duration: 6.5s;
-  animation-delay: 2.5s;
-}
-.cpu-line-20 {
-  offset-path: path("M 1140 740 h -160 q -16 0 -16 -16 v -120 q 0 -16 -16 -16 h -160 q -16 0 -16 -16 v -122 h -42");
-  animation-duration: 4s;
-  animation-delay: 11s;
-}
-.cpu-line-21 {
-  offset-path: path("M 100 400 h 160 q 16 0 16 16 h 194");
-  animation-duration: 2s;
-  animation-delay: 0.5s;
-}
-.cpu-line-22 {
-  offset-path: path("M 1100 400 h -160 q -16 0 -16 -16 h -194");
-  animation-duration: 2s;
-  animation-delay: 4.5s;
-}
-.cpu-line-23 {
-  offset-path: path("M 360 60 v 140 q 0 16 16 16 h 78 q 16 0 16 16 v 118");
-  animation-duration: 3s;
-  animation-delay: 7.5s;
-}
-.cpu-line-24 {
-  offset-path: path("M 840 60 v 140 q 0 16 -16 16 h -78 q -16 0 -16 16 v 118");
-  animation-duration: 3s;
-  animation-delay: 3s;
 }
 
 @keyframes animation-path {

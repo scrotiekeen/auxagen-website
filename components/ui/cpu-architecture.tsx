@@ -15,45 +15,32 @@ export interface AuxanoChipProps {
   style?: React.CSSProperties;
 }
 
-// All 24 circuit path definitions — 1200x800 viewBox, chip centered at (600,400)
+// 14 circuit path definitions — 1200x800 viewBox, chip centered at (600,400)
 // Paths originate from screen edges and converge on the central chip
-// New chip body: x=390, y=300, width=420, height=200 — all path endpoints fall inside the chip
+// Chip body: x=390, y=300, width=420, height=200 — all path endpoints fall inside the chip
 const PATHS = [
   // Left-side connections
-  "M 0 200 h 360 q 16 0 16 16 v 124 q 0 16 16 16 h 78",
-  "M 0 400 h 470",
-  "M 0 600 h 260 q 16 0 16 -16 v -140 q 0 -16 16 -16 h 178",
-  "M 0 300 h 280 q 16 0 16 16 v 54 q 0 16 16 16 h 158",
+  "M 0 200 h 360 q 16 0 16 16 v 124 q 0 16 16 16 h 78",         // 0 — left upper sweep
+  "M 0 400 h 470",                                                 // 1 — left center artery
+  "M 0 600 h 260 q 16 0 16 -16 v -140 q 0 -16 16 -16 h 178",    // 2 — left lower sweep
   // Right-side connections
-  "M 1200 200 h -360 q -16 0 -16 16 v 134 q 0 16 -16 16 h -78",
-  "M 1200 400 h -470",
-  "M 1200 600 h -260 q -16 0 -16 -16 v -140 q 0 -16 -16 -16 h -178",
-  "M 1200 310 h -240 q -16 0 -16 16 v 24 q 0 16 -16 16 h -198",
+  "M 1200 200 h -360 q -16 0 -16 16 v 134 q 0 16 -16 16 h -78", // 3 — right upper sweep
+  "M 1200 400 h -470",                                             // 4 — right center artery
+  "M 1200 600 h -260 q -16 0 -16 -16 v -140 q 0 -16 -16 -16 h -178", // 5 — right lower sweep
   // Top connections
-  "M 240 0 v 200 q 0 16 16 16 h 214 q 16 0 16 16 v 118",
-  "M 540 0 v 350",
-  "M 640 0 v 350",
-  "M 940 0 v 200 q 0 16 -16 16 h -238 q -16 0 -16 16 v 118",
+  "M 240 0 v 200 q 0 16 16 16 h 214 q 16 0 16 16 v 118",        // 6 — top-left sweep
+  "M 540 0 v 350",                                                  // 7 — top center-left artery
+  "M 640 0 v 350",                                                  // 8 — top center-right artery
+  "M 940 0 v 200 q 0 16 -16 16 h -238 q -16 0 -16 16 v 118",    // 9 — top-right sweep
   // Bottom connections
-  "M 240 800 v -160 q 0 -16 16 -16 h 214 q 16 0 16 -16 v -158",
-  "M 530 800 v -350",
-  "M 660 800 v -350",
-  "M 960 800 v -180 q 0 -16 -16 -16 h -240 q -16 0 -16 -16 v -138",
-  // Corner staircase sweeps
-  "M 60 60 h 160 q 16 0 16 16 v 120 q 0 16 16 16 h 160 q 16 0 16 16 v 122 h 42",
-  "M 1140 60 h -160 q -16 0 -16 16 v 120 q 0 16 -16 16 h -160 q -16 0 -16 16 v 122 h -42",
-  "M 60 740 h 120 q 16 0 16 -16 v -120 q 0 -16 16 -16 h 120 q 16 0 16 -16 v -122 h 122",
-  "M 1140 740 h -160 q -16 0 -16 -16 v -120 q 0 -16 -16 -16 h -160 q -16 0 -16 -16 v -122 h -42",
-  // Horizontal branch paths
-  "M 100 400 h 160 q 16 0 16 16 h 194",
-  "M 1100 400 h -160 q -16 0 -16 -16 h -194",
-  // Inner top shortcuts
-  "M 360 60 v 140 q 0 16 16 16 h 78 q 16 0 16 16 v 118",
-  "M 840 60 v 140 q 0 16 -16 16 h -78 q -16 0 -16 16 v 118",
+  "M 240 800 v -160 q 0 -16 16 -16 h 214 q 16 0 16 -16 v -158", // 10 — bottom-left sweep
+  "M 530 800 v -350",                                               // 11 — bottom center-left artery
+  "M 660 800 v -350",                                               // 12 — bottom center-right artery
+  "M 960 800 v -180 q 0 -16 -16 -16 h -240 q -16 0 -16 -16 v -138", // 13 — bottom-right sweep
 ] as const;
 
 // Main artery indices — straight cardinal shots with thicker strokes
-const ARTERY_INDICES = new Set([1, 5, 9, 10, 13, 14]);
+const ARTERY_INDICES = new Set([1, 4, 7, 8, 11, 12]);
 
 const GRADIENT_CYCLE = [
   "auxano-emerald-grad",
@@ -86,11 +73,12 @@ export function AuxanoChip({
       preserveAspectRatio={preserveAspectRatio}
       style={style}
     >
-      {/* Secondary circuit paths — thinner, lower hierarchy */}
+      {/* Secondary circuit paths — thinner, subtle hierarchy */}
       <g
         stroke="currentColor"
         fill="none"
-        strokeWidth="1.2"
+        strokeWidth="1"
+        strokeOpacity="0.4"
         strokeDasharray="100 100"
         pathLength="100"
         markerStart="url(#auxano-circle-marker)"
