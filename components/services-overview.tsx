@@ -97,7 +97,7 @@ export function ServicesOverview() {
       <div className="max-w-6xl mx-auto">
         {/* Typewriter intro */}
         <div className="text-center mb-8">
-          <div className="text-base sm:text-lg text-slate-600 font-mono">
+          <div className="text-base sm:text-lg text-slate-400 font-mono">
             <Typewriter
               prefix="We help you "
               phrases={[
@@ -112,7 +112,7 @@ export function ServicesOverview() {
         </div>
 
         <motion.h2
-          className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4"
+          className="text-3xl md:text-4xl font-bold text-white text-center mb-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -121,7 +121,7 @@ export function ServicesOverview() {
           What We Do
         </motion.h2>
         <motion.p
-          className="text-gray-600 text-center mb-14 max-w-2xl mx-auto"
+          className="text-gray-400 text-center mb-14 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -151,11 +151,11 @@ export function ServicesOverview() {
                     <div className="p-2.5 bg-auxano-primary/10 rounded-xl group-hover:bg-auxano-primary/20 transition-colors duration-300">
                       <Icon className="text-auxano-primary" size={24} />
                     </div>
-                    <h3 className="text-gray-900 font-bold text-xl">{dept.title}</h3>
+                    <h3 className="text-white font-bold text-xl">{dept.title}</h3>
                   </div>
 
                   {/* Description */}
-                  <p className="text-gray-600 text-sm leading-relaxed mb-6">
+                  <p className="text-gray-400 text-sm leading-relaxed mb-6">
                     {dept.description}
                   </p>
 
@@ -164,7 +164,7 @@ export function ServicesOverview() {
                     {dept.services.map((svc) => (
                       <li key={svc.name} className="flex items-start gap-2">
                         <span className="text-auxano-primary mt-0.5 text-xs flex-shrink-0">▸</span>
-                        <span className="text-gray-700 text-sm">{svc.name}</span>
+                        <span className="text-gray-300 text-sm">{svc.name}</span>
                       </li>
                     ))}
                   </ul>

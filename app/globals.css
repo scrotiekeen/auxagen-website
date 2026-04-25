@@ -47,15 +47,15 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* Auxano Brand Colors — Light Mode Preview */
-  --color-auxano-dark-base: #F8FAFC;
-  --color-auxano-darker: #FFFFFF;
+  /* Auxano Brand Colors */
+  --color-auxano-dark-base: #111827;
+  --color-auxano-darker: #0D1117;
   --color-auxano-primary: #10B981;
-  --color-auxano-secondary: #059669;
-  --color-auxano-light: #047857;
+  --color-auxano-secondary: #34D399;
+  --color-auxano-light: #6EE7B7;
   --color-auxano-tint: #ECFDF5;
-  --color-auxano-card: #FFFFFF;
-  --color-auxano-border: #E2E8F0;
+  --color-auxano-card: #1E293B;
+  --color-auxano-border: #374151;
 }
 
 :root {
@@ -132,7 +132,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-white text-gray-900 antialiased;
+    @apply bg-auxano-darker text-white antialiased;
   }
   html {
     @apply font-sans;
@@ -295,13 +295,13 @@
   );
 }
 
-/* Radial vignette — light mode: subtle edge softening */
+/* Radial vignette — deep space darkness at edges */
 .hero-vignette {
   background: radial-gradient(
     ellipse 85% 75% at 50% 50%,
-    transparent 40%,
-    rgba(248, 250, 252, 0.3) 70%,
-    rgba(248, 250, 252, 0.6) 100%
+    transparent 15%,
+    rgba(2, 4, 8, 0.55) 55%,
+    rgba(2, 4, 8, 0.95) 100%
   );
 }
 
@@ -356,11 +356,11 @@
   animation: hero-particle-float ease-in-out infinite;
 }
 
-/* Headline glow — light mode: subtle drop shadow */
+/* Headline glow */
 .hero-headline {
   text-shadow:
-    0 2px 20px rgba(16, 185, 129, 0.15),
-    0 1px 4px rgba(0, 0, 0, 0.06);
+    0 0 40px rgba(16, 185, 129, 0.2),
+    0 0 80px rgba(16, 185, 129, 0.08);
 }
 
 /* Scroll indicator bounce */
@@ -377,15 +377,15 @@
   animation: hero-scroll-bounce 2.2s ease-in-out infinite;
 }
 
-/* ── Light Hero Background ───────────────────────────────────── */
+/* ── Deep Space Background ───────────────────────────────────── */
 
 .hero-space-bg {
   background: radial-gradient(
     ellipse 130% 110% at 50% 45%,
-    #F0FDF9 0%,
-    #ECFDF5 30%,
-    #F8FAFC 65%,
-    #FFFFFF 100%
+    #060B14 0%,
+    #080e18 25%,
+    #0a0f1a 50%,
+    #020408 100%
   );
 }
 
