@@ -1,4 +1,28 @@
-# Last Run — 2026-04-24
+# Last Run — 2026-04-25
+
+## Status: success
+
+## What was attempted
+Complete rewrite of `components/hero.tsx` — replaced video/circuit board/stars/particles hero with a clean two-column layout matching new copy and design spec.
+
+## What succeeded
+- Removed: video background, AuxanoChip import, PARTICLES array, RINGS arrays, dot grid, vignette, ambient bloom, scroll indicator, all animation layers
+- New layout: two-column grid (text left, photo placeholder right) on desktop, stacked on mobile
+- Exact copy: headline "A business owner's time is money.", full body with `$115,000` in emerald-400, CTA "Book your free consultation →" → /contact
+- Photo placeholder: 3:4 dark rounded rect, subtle border + gradient, silhouette icon + "Photo coming soon" — looks intentional
+- Background: #0D1117 (auxano-darker), clean with no effects
+- Framer Motion fade-ins on both columns
+- Build passes clean
+
+## What failed
+Nothing.
+
+## Current state
+Buildable. Committed, not pushed. Hero is fully replaced. Next: Corbin swaps placeholder for real headshot when ready.
+
+---
+
+# Previous Run — 2026-04-24
 
 ## Status: success
 

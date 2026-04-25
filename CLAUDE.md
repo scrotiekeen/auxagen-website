@@ -69,6 +69,6 @@ Website for Auxano Agency (brand: Auxagen), a full-stack business growth agency 
 8. Browser caching issue — Corbin's browser aggressively caches old versions. He may need to use incognito or clear cache between changes.
 
 ## Last Session
-- **Date:** 2026-04-24
-- **What was done:** Circuit board cleanup — reduced PATHS from 24 to 14. Removed corner staircases (4), redundant branch paths (2), inner shortcuts (2), and one noisy path from each side group. Kept all 4 cardinal groups with clean sweeps + arteries. ARTERY_INDICES updated to `{1,4,7,8,11,12}`. Secondary line opacity lowered to 0.4, stroke thinned to 1. CSS cpu-line classes trimmed from 24 to 14. Chip body, pins, corner accents, glow effects all intact. Build passes clean. Committed `144a9fa`.
-- **What's next:** Corbin reviews over video background at localhost (use incognito). May continue polishing other sections or move to deploy once satisfied.
+- **Date:** 2026-04-25
+- **What was done:** Complete hero rewrite. Removed video background, circuit board, stars, particles, rings, vignette, and ambient bloom. Replaced with clean two-column layout: left side has headline "A business owner's time is money.", body copy with $115,000 in emerald, and "Book your free consultation →" CTA linking to /contact; right side has an intentional photo placeholder (dark rounded rect, silhouette icon, "Photo coming soon"). Background is auxano-darker (#0D1117). Framer Motion fade-ins on both columns. Fully responsive — stacks on mobile. Build passes clean.
+- **What's next:** Corbin reviews new hero. May want to add a real headshot/photo to the placeholder. Can continue polishing services, showcase, contact, footer, or move to deploy.
