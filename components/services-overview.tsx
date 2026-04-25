@@ -22,6 +22,20 @@ interface Department {
 
 const departments: Department[] = [
   {
+    id: "business-consulting",
+    icon: Briefcase,
+    title: "Business Consulting",
+    description:
+      "Not every problem needs an AI solution, and we'll tell you when it doesn't. We meet you where you are — helping you find the right solution for your business, AI or otherwise, so the door stays open to work on whatever actually moves the needle.",
+    services: [
+      { name: "Business Assessment", description: "End-to-end review to identify what's working, what's leaking, and where to focus." },
+      { name: "Growth Strategy", description: "A prioritized plan for scaling revenue, based on your capacity and market." },
+      { name: "Operational Review", description: "We map your processes and find the friction points." },
+      { name: "Ongoing Advisory", description: "Retainer-based guidance as your business grows." },
+    ],
+    href: "/services#business-consulting",
+  },
+  {
     id: "web-software",
     icon: Code2,
     title: "Web & Software",
@@ -56,20 +70,6 @@ const departments: Department[] = [
       { name: "Ongoing Advisory", description: "Retainer-based strategic guidance as your business and AI evolve." },
     ],
     href: "/services#ai-strategy",
-  },
-  {
-    id: "business-consulting",
-    icon: Briefcase,
-    title: "Business Consulting",
-    description:
-      "Not every problem needs an AI solution, and we'll tell you when it doesn't. We meet you where you are — helping you find the right solution for your business, AI or otherwise, so the door stays open to work on whatever actually moves the needle.",
-    services: [
-      { name: "Business Assessment", description: "End-to-end review to identify what's working, what's leaking, and where to focus." },
-      { name: "Growth Strategy", description: "A prioritized plan for scaling revenue, based on your capacity and market." },
-      { name: "Operational Review", description: "We map your processes and find the friction points." },
-      { name: "Ongoing Advisory", description: "Retainer-based guidance as your business grows." },
-    ],
-    href: "/services#business-consulting",
   },
 ];
 

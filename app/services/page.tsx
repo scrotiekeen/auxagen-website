@@ -68,35 +68,6 @@ function DepartmentSection({
         </div>
       </div>
 
-      {/* How It Works */}
-      <div className="mb-10">
-        <h3 className="text-sm font-semibold text-auxano-secondary uppercase tracking-wider mb-6">
-          How It Works
-        </h3>
-        <div className="flex flex-col sm:flex-row gap-0 sm:gap-0 relative">
-          {["Discovery Call", "Scoping & Planning", "Delivery", "Handoff & Support"].map((step, i) => (
-            <div key={step} className="flex-1 flex items-start gap-3 sm:flex-col sm:items-center sm:text-center relative">
-              {/* Connector line */}
-              {i < 3 && (
-                <div className="hidden sm:block absolute top-4 left-1/2 w-full h-px bg-auxano-border" />
-              )}
-              <div className="relative z-10 w-8 h-8 rounded-full bg-auxano-primary/20 border border-auxano-primary/40 text-auxano-primary text-sm font-bold flex items-center justify-center flex-shrink-0">
-                {i + 1}
-              </div>
-              <div className="sm:mt-3">
-                <div className="text-white font-semibold text-sm">{step}</div>
-                <div className="text-gray-500 text-xs mt-0.5">
-                  {i === 0 && "We learn about your business and goals"}
-                  {i === 1 && "We scope the work, timeline, and deliverables"}
-                  {i === 2 && "We build, test, and iterate with your feedback"}
-                  {i === 3 && "You get the keys — with docs, training, and ongoing access"}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
       <Link
         href={`/contact?service=${serviceParam}`}
         className="inline-block bg-auxano-primary text-white font-semibold px-6 py-3 rounded-lg hover:bg-emerald-600 transition-colors text-sm"
@@ -107,7 +78,97 @@ function DepartmentSection({
   );
 }
 
+function HowItWorks() {
+  const stages = [
+    {
+      title: "Free Consultation",
+      duration: "30–45 min",
+      desc: "We learn about your business, identify the real lever, and decide if we're the right fit.",
+    },
+    {
+      title: "Strategy Session",
+      duration: "$250 · 60–75 min",
+      desc: "We diagnose your business, present a tailored plan with pricing, and close on execution.",
+    },
+    {
+      title: "Execution",
+      duration: "1–6 months",
+      desc: "We build and run the strategy alongside you — weekly check-ins, real data, measurable results.",
+    },
+    {
+      title: "Training Handoff",
+      duration: "Optional addon",
+      desc: "We train your team to run what we built, so you can operate independently if you choose.",
+    },
+    {
+      title: "Wrap-Up & Continuation",
+      duration: "30 days → ongoing",
+      desc: "We close out, hand off operations, or transition to an ongoing retainer — your call.",
+    },
+  ];
+
+  return (
+    <section id="how-it-works" className="py-20 border-b border-auxano-border scroll-mt-20">
+      <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">How It Works</h2>
+      <p className="text-gray-400 text-lg mb-12 max-w-2xl leading-relaxed">
+        Every engagement follows the same proven pipeline — no stage gets skipped, no stage gets blurred into the next.
+      </p>
+      <div className="space-y-0">
+        {stages.map((stage, i) => (
+          <div key={stage.title} className="flex gap-5 relative">
+            {/* Vertical connector line */}
+            <div className="flex flex-col items-center">
+              <div className="relative z-10 w-10 h-10 rounded-full bg-auxano-primary/20 border border-auxano-primary/40 text-auxano-primary text-sm font-bold flex items-center justify-center flex-shrink-0">
+                {i + 1}
+              </div>
+              {i < stages.length - 1 && (
+                <div className="w-px flex-1 bg-auxano-border" />
+              )}
+            </div>
+            {/* Content */}
+            <div className="pb-10">
+              <div className="flex items-baseline gap-3 mb-1">
+                <h3 className="text-white font-semibold text-base">{stage.title}</h3>
+                <span className="text-auxano-primary text-xs font-mono">{stage.duration}</span>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed max-w-lg">{stage.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 const departmentsData: DepartmentSectionProps[] = [
+  {
+    id: "business-consulting",
+    icon: Briefcase,
+    title: "Business Consulting",
+    description:
+      "Not every problem needs an AI solution, and we'll tell you when it doesn't. This department exists to meet you where you are — we'll help you find the right solution for your business, AI or otherwise, so the door stays open to work on whatever actually moves the needle.",
+    services: [
+      {
+        name: "Business Assessment",
+        description:
+          "End-to-end review of your operation to identify what's working, what's leaking, and where to focus.",
+      },
+      {
+        name: "Growth Strategy",
+        description: "A prioritized plan for scaling revenue, based on your capacity and market.",
+      },
+      {
+        name: "Operational Review",
+        description: "We map your processes and find the friction points.",
+      },
+      {
+        name: "Ongoing Advisory",
+        description: "Retainer-based guidance as your business grows.",
+      },
+    ],
+    ctaLabel: "Book a Business Consulting Call",
+    serviceParam: "business-consulting",
+  },
   {
     id: "web-software",
     icon: Code2,
@@ -194,34 +255,6 @@ const departmentsData: DepartmentSectionProps[] = [
     ctaLabel: "Start with AI Strategy",
     serviceParam: "ai-strategy",
   },
-  {
-    id: "business-consulting",
-    icon: Briefcase,
-    title: "Business Consulting",
-    description:
-      "Not every problem needs an AI solution, and we'll tell you when it doesn't. This department exists to meet you where you are — we'll help you find the right solution for your business, AI or otherwise, so the door stays open to work on whatever actually moves the needle.",
-    services: [
-      {
-        name: "Business Assessment",
-        description:
-          "End-to-end review of your operation to identify what's working, what's leaking, and where to focus.",
-      },
-      {
-        name: "Growth Strategy",
-        description: "A prioritized plan for scaling revenue, based on your capacity and market.",
-      },
-      {
-        name: "Operational Review",
-        description: "We map your processes and find the friction points.",
-      },
-      {
-        name: "Ongoing Advisory",
-        description: "Retainer-based guidance as your business grows.",
-      },
-    ],
-    ctaLabel: "Book a Business Consulting Call",
-    serviceParam: "business-consulting",
-  },
 ];
 
 export default function ServicesPage() {
@@ -233,8 +266,14 @@ export default function ServicesPage() {
           Three departments. Everything your business needs to build a digital foundation, deploy AI that works, and grow with a clear strategy.
         </p>
 
-        {/* Department jump links */}
+        {/* Jump links */}
         <div className="flex flex-wrap gap-3 mb-16">
+          <a
+            href="#how-it-works"
+            className="flex items-center gap-2 px-4 py-2 bg-auxano-dark-base border border-auxano-border rounded-lg text-gray-300 text-sm hover:border-auxano-primary hover:text-white transition-all duration-200"
+          >
+            How It Works
+          </a>
           {departmentsData.map((dept) => {
             const Icon = dept.icon;
             return (
@@ -249,6 +288,8 @@ export default function ServicesPage() {
             );
           })}
         </div>
+
+        <HowItWorks />
 
         {departmentsData.map((dept) => (
           <DepartmentSection key={dept.id} {...dept} />
