@@ -78,9 +78,25 @@ export function Showcase() {
                 </p>
               </div>
 
-              {/* Image side */}
+              {/* Image side — browser frame mockup */}
               <div className="flex-1 w-full">
-                <div className="relative rounded-2xl overflow-hidden border border-auxano-border shadow-2xl shadow-black/40">
+                <div className="relative rounded-2xl overflow-hidden border border-auxano-border shadow-2xl shadow-black/40 bg-[#1a1a2e]">
+                  {/* Browser chrome */}
+                  <div className="flex items-center gap-2 px-4 py-3 bg-[#1e1e2e] border-b border-auxano-border">
+                    {/* Traffic light dots */}
+                    <div className="flex gap-1.5">
+                      <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
+                      <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
+                      <div className="w-3 h-3 rounded-full bg-[#28c840]" />
+                    </div>
+                    {/* Address bar */}
+                    <div className="flex-1 mx-8">
+                      <div className="bg-[#2a2a3e] rounded-md px-3 py-1 flex items-center justify-center">
+                        <span className="text-gray-500 text-xs truncate">auxagen.co</span>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Screenshot */}
                   <Image
                     src={project.image}
                     alt={project.alt}
