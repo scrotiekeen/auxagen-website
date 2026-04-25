@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Hero } from "@/components/hero";
+import { ValueProp } from "@/components/value-prop";
 import { ServicesOverview } from "@/components/services-overview";
 
 /**
@@ -17,7 +18,7 @@ export function ScrollTransition() {
       {/* Hero — scrolls naturally */}
       <Hero />
 
-      {/* Gradient bridge — blends hero's dark void into services section */}
+      {/* Gradient bridge — blends hero's dark void into value prop */}
       <div
         className="relative h-24 -mt-24 pointer-events-none"
         style={{
@@ -25,6 +26,9 @@ export function ScrollTransition() {
           background: "linear-gradient(to bottom, transparent, #0D1117)",
         }}
       />
+
+      {/* Value prop — "A business owner's time is money" */}
+      <ValueProp />
 
       {/* Services section — fades up into view */}
       <motion.div
