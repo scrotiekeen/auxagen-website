@@ -159,7 +159,7 @@ export function AuxanoChip({
         </g>
       ))}
 
-      {/* Chip ambient glow layer — subtle emerald bloom behind text area */}
+      {/* Chip ambient glow layer — enlarged to match new chip */}
       <rect
         x="350"
         y="270"
@@ -169,6 +169,66 @@ export function AuxanoChip({
         fill="transparent"
         filter="url(#auxano-glow-ambient)"
       />
+
+      {/* Central Chip — enlarged to 420×200 centered at (600,400) */}
+      <g>
+        {/* Dense Connection Pins */}
+        {showConnections && (
+          <g fill="url(#auxano-connection-gradient)" filter="url(#auxano-pin-glow)">
+            {/* Top pins — protrude above chip top edge (y=300), pin y=284 h=16 */}
+            {[424, 448, 472, 496, 520, 544, 568, 592, 616, 640, 664, 688, 712, 736, 760].map((x) => (
+              <rect key={x} x={x} y="284" width="8" height="16" rx="3" />
+            ))}
+            {/* Bottom pins — protrude below chip bottom edge (y=500) */}
+            {[424, 448, 472, 496, 520, 544, 568, 592, 616, 640, 664, 688, 712, 736, 760].map((x) => (
+              <rect key={x} x={x} y="500" width="8" height="16" rx="3" />
+            ))}
+            {/* Left pins — protrude left of chip left edge (x=390), pin x=374 w=16 */}
+            {[334, 354, 374, 394, 414, 434, 454].map((y) => (
+              <rect key={y} x="374" y={y} width="16" height="8" rx="2" />
+            ))}
+            {/* Right pins — protrude right of chip right edge (x=810) */}
+            {[334, 354, 374, 394, 414, 434, 454].map((y) => (
+              <rect key={y} x="810" y={y} width="16" height="8" rx="2" />
+            ))}
+          </g>
+        )}
+
+        {/* Main Chip Body — 420×200, centered at (600,400), softer corners + gradient fill */}
+        <rect
+          x="390"
+          y="300"
+          width="420"
+          height="200"
+          rx="16"
+          fill="url(#auxano-chip-body-grad)"
+          filter="url(#auxano-glow)"
+        />
+
+        {/* Inner chip face — 8px padding all sides, softer corners */}
+        <rect
+          x="398"
+          y="308"
+          width="404"
+          height="184"
+          rx="12"
+          fill="url(#auxano-chip-face-grad)"
+          stroke="#1a3020"
+          strokeWidth="1"
+        />
+
+        {/* Corner accent marks — L-shaped, bold signature detail */}
+        <g stroke="#10B981" strokeWidth="2.5" fill="none" opacity="0.85">
+          {/* Top-left */}
+          <path d="M 404 314 h 27 M 404 314 v 21" />
+          {/* Top-right */}
+          <path d="M 796 314 h -27 M 796 314 v 21" />
+          {/* Bottom-left */}
+          <path d="M 404 486 h 27 M 404 486 v -21" />
+          {/* Bottom-right */}
+          <path d="M 796 486 h -27 M 796 486 v -21" />
+        </g>
+      </g>
 
       {/* Defs */}
       <defs>
