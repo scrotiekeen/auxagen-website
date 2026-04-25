@@ -25,12 +25,22 @@ const RINGS_MOBILE = [120, 200, 300, 400];
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen hero-space-bg overflow-hidden">
+    <section className="relative min-h-[75vh] overflow-hidden bg-black">
 
-      {/* ── Layer 0a: Deep space star field (sparse — abyss feel) ───── */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="hero-starfield-small" style={{ opacity: 0.35 }} />
-        <div className="hero-starfield-bright" style={{ opacity: 0.5 }} />
+      {/* ── Layer 0: Video background ──────────────────────────────── */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ opacity: 0.4 }}
+        >
+          <source src="/hero-bg.mp4" type="video/mp4" />
+        </video>
+        {/* Dark overlay to keep text readable */}
+        <div className="absolute inset-0 bg-black/50" />
       </div>
 
       {/* ── Layer 0b: CPU circuit board — scaled for mobile ──────────── */}
@@ -56,11 +66,6 @@ export function Hero() {
             animateMarkers
           />
         </div>
-      </div>
-
-      {/* ── Layer 1a: Subtle nebula wash (just one faint emerald hint) ── */}
-      <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
-        <div className="hero-nebula-emerald" style={{ opacity: 0.04 }} />
       </div>
 
       {/* ── Layer 1b: Dot grid ──────────────────────────────────────── */}
@@ -126,7 +131,7 @@ export function Hero() {
       />
 
       {/* ── Layer 6: Content — centered over chip ─────────────────────── */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 text-center gap-4">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-[75vh] px-4 sm:px-6 text-center gap-4">
 
         {/* Headline + subtitle — the chip body frames this block */}
         <motion.div
