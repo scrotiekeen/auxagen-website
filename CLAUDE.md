@@ -16,7 +16,7 @@ Website for Auxano Agency (brand: Auxagen), a full-stack business growth agency 
 **Live at auxagen.co — deployed via Vercel auto-deploy on push to master.**
 
 ### Pages
-- `/` — Homepage: hero (video bg + circuit board overlay, 75vh) → value prop ("A business owner's time is money") → services overview cards → showcase ("What We've Built") → bottom CTA
+- `/` — Homepage: hero (video bg + circuit board overlay, 75vh) → value prop ("A business owner's time is money" + Cost-of-Doing-Nothing card) → services overview cards → showcase ("What We've Built") → why different ("Built different on purpose" — 4 pillars) → bottom CTA
 - `/services` — 3 departments (Business Consulting, Web & Software, AI Strategy) with detailed breakdowns + 5-stage "How It Works" pipeline
 - `/contact` — 3-step mini wizard (service → team size → contact info) with URL pre-selection support
 - `/api/contact` — POST route, validates + sends email via Resend
@@ -28,6 +28,7 @@ Website for Auxano Agency (brand: Auxagen), a full-stack business growth agency 
 - `components/scroll-transition.tsx` — Wraps Hero → ValueProp → ServicesOverview with gradient bridge. Natural scroll.
 - `components/services-overview.tsx` — 3 department cards (title + description, no service lists). Left-aligned heading.
 - `components/showcase.tsx` — "What We've Built" with alternating layout, browser frame mockups. Higher Grounds + client portal screenshots.
+- `components/why-different.tsx` — "Why Auxano" differentiator section. 4 pillar cards (One team / Owners talk to owners / Built to hand off / AI-native). Number badges, lucide icons, hover glow + lift, emerald accent bar. Sits between Showcase and BottomCta.
 - `components/nav.tsx` — Fixed nav, "Auxano Agency" centered, links + CTA on the right
 - `components/contact-wizard.tsx` — Client-side multi-step form
 - `components/footer.tsx` — Site footer
@@ -76,5 +77,6 @@ Website for Auxano Agency (brand: Auxagen), a full-stack business growth agency 
   - **Robots:** `app/robots.ts` (allows all, disallows `/api/`, points to sitemap)
   - **Value prop placeholder REPLACED:** `components/value-prop.tsx` — the "Photo coming soon" panel is gone. Replaced with a polished "Cost of Doing Nothing" data card: emerald glow, animated bars, three metrics (20+ hrs/week lost, $115K annual leak highlighted, 38% slower lead response), staggered animations, footer caveat. On-brand, reinforces the left-side $115K narrative.
   - **Footer:** swapped `corcolt2114@gmail.com` → `corbinkuehne@auxagen.co` (business email), added `auxagen.co` link.
+  - **Why Auxano section** added between Showcase and BottomCta — `components/why-different.tsx`, "Built different on purpose." headline, 4 pillar cards (One team three disciplines / Owners talk to owners / Built to hand off / AI-native not bolted on). Hover glow + lift. Closes the funnel right before the CTA. Commit `70aa569`.
   - Build passes clean. New routes: `/opengraph-image`, `/robots.txt`, `/sitemap.xml`. Pushed to master.
 - **What's next:** Verify OG previews on LinkedIn/Twitter post-deploy. Add real founder photo if/when desired (panel will need redesign). Compress hero video. Wire Resend.
