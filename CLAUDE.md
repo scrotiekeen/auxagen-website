@@ -13,22 +13,22 @@ Website for Auxano Agency (brand: Auxagen), a full-stack business growth agency 
 - Hosting: Vercel (not yet deployed)
 
 ## Current State
-**MVP built + major hero overhaul complete (15 commits in one session).**
+**Live at auxagen.co — deployed via Vercel auto-deploy on push to master.**
 
 ### Pages
-- `/` — Homepage: hero (full-screen CPU circuit board + headline framed by chip), services overview cards, 3D scroll showcase, bottom CTA
-- `/services` — Detailed service breakdowns with "What's Included" and "How It Works" for each
+- `/` — Homepage: hero (video bg + circuit board overlay, 75vh) → value prop ("A business owner's time is money") → services overview cards → showcase ("What We've Built") → bottom CTA
+- `/services` — 3 departments (Business Consulting, Web & Software, AI Strategy) with detailed breakdowns + 5-stage "How It Works" pipeline
 - `/contact` — 3-step mini wizard (service → team size → contact info) with URL pre-selection support
 - `/api/contact` — POST route, validates + sends email via Resend
 
 ### Key Components
-- `components/ui/cpu-architecture.tsx` — Full-screen animated circuit board SVG (14 paths, 34 pins, pulsing glow, corner accents, line hierarchy). ViewBox 1200x800 with preserveAspectRatio. The chip frames the headline text — no text inside the SVG itself.
-- `components/hero.tsx` — Deep space abyss background, sparse star field, floating particles, concentric rings, vignette. Headline + subtitle + CTAs centered over the chip frame.
-- `components/scroll-transition.tsx` — Wraps Hero + ServicesOverview. Natural scroll (no sticky), gradient bridge between sections, services fade-in on viewport entry.
-- `components/typewriter.tsx` — Rotating phrase typewriter effect (moved to services section)
-- `components/services-overview.tsx` — Service cards with typewriter intro
+- `components/ui/cpu-architecture.tsx` — Animated circuit board SVG (14 paths, 34 pins, pulsing glow, corner accents). ViewBox 1200x800.
+- `components/hero.tsx` — Video background (hero-bg.mp4) + circuit board overlay, particles, concentric rings, vignette. 75vh.
+- `components/value-prop.tsx` — Two-column: "A business owner's time is money" copy with $115K callout + CTA left, photo placeholder right.
+- `components/scroll-transition.tsx` — Wraps Hero → ValueProp → ServicesOverview with gradient bridge. Natural scroll.
+- `components/services-overview.tsx` — 3 department cards (title + description, no service lists). Left-aligned heading.
+- `components/showcase.tsx` — "What We've Built" with alternating layout, browser frame mockups. Higher Grounds + client portal screenshots.
 - `components/nav.tsx` — Fixed nav, "Auxano Agency" centered, links + CTA on the right
-- `components/container-scroll.tsx` — Framer Motion 3D laptop rotation on scroll
 - `components/contact-wizard.tsx` — Client-side multi-step form
 - `components/footer.tsx` — Site footer
 
@@ -47,8 +47,9 @@ Website for Auxano Agency (brand: Auxagen), a full-stack business growth agency 
 - Headline is broad: "Solutions Engineered For Your Business" — covers consulting, marketing, AI, dev without pigeonholing
 
 ## Git & Deploy
-- Remote: Not yet created on GitHub
-- Deploy: Not yet deployed to Vercel
+- Remote: github.com/scrotiekeen/auxagen-website
+- Deploy: Vercel auto-deploy on push to master
+- Domain: auxagen.co (Namecheap, A record → 76.76.21.21)
 - Git email: corcolt2114@gmail.com (ALWAYS use this)
 
 ## Key Decisions
@@ -59,16 +60,21 @@ Website for Auxano Agency (brand: Auxagen), a full-stack business growth agency 
 - Services page CTAs pre-select the service in the contact wizard via URL params
 
 ## What Needs To Be Done
-1. Corbin needs to sign up at resend.com and add API key to .env.local
-2. Replace public/showcase-screenshot.png with a real project screenshot
-3. Create GitHub repo and push
-4. Deploy to Vercel with RESEND_API_KEY env var
-5. Corbin may want to continue polishing other sections (services, showcase, contact, footer)
-6. Potential: rebrand to Auxagen domain (auxagen.co)
-7. Potential: custom domain setup
-8. Browser caching issue — Corbin's browser aggressively caches old versions. He may need to use incognito or clear cache between changes.
+1. Corbin needs to sign up at resend.com and add API key to .env.local (contact form won't send without it)
+2. Compress hero-bg.mp4 (currently 51MB — should be under 5-10MB for production)
+3. Continue polishing remaining sections (contact, footer)
+4. Browser caching issue — Corbin's browser aggressively caches. Use incognito or hard refresh.
+5. Optional: replace value-prop right panel with a real founder photo when available (currently shows "Cost of Doing Nothing" data card).
 
 ## Last Session
-- **Date:** 2026-04-24
-- **What was done:** Circuit board cleanup — reduced PATHS from 24 to 14. Removed corner staircases (4), redundant branch paths (2), inner shortcuts (2), and one noisy path from each side group. Kept all 4 cardinal groups with clean sweeps + arteries. ARTERY_INDICES updated to `{1,4,7,8,11,12}`. Secondary line opacity lowered to 0.4, stroke thinned to 1. CSS cpu-line classes trimmed from 24 to 14. Chip body, pins, corner accents, glow effects all intact. Build passes clean. Committed `144a9fa`.
-- **What's next:** Corbin reviews over video background at localhost (use incognito). May continue polishing other sections or move to deploy once satisfied.
+- **Date:** 2026-04-27
+- **What was done:** SEO + polish pass.
+  - **Metadata:** full Open Graph, Twitter card, `metadataBase`, canonical, keywords, themeColor, robots directives in `app/layout.tsx`
+  - **JSON-LD:** `ProfessionalService` schema with services catalog injected into `<body>` for rich-result eligibility
+  - **OG image:** programmatic dynamic OG via `app/opengraph-image.tsx` (Next.js `ImageResponse`) — deep-space gradient, emerald nebula, brand pill, headline, services strip. 1200x630, edge runtime.
+  - **Sitemap:** `app/sitemap.ts` (auto-generated `/sitemap.xml`)
+  - **Robots:** `app/robots.ts` (allows all, disallows `/api/`, points to sitemap)
+  - **Value prop placeholder REPLACED:** `components/value-prop.tsx` — the "Photo coming soon" panel is gone. Replaced with a polished "Cost of Doing Nothing" data card: emerald glow, animated bars, three metrics (20+ hrs/week lost, $115K annual leak highlighted, 38% slower lead response), staggered animations, footer caveat. On-brand, reinforces the left-side $115K narrative.
+  - **Footer:** swapped `corcolt2114@gmail.com` → `corbinkuehne@auxagen.co` (business email), added `auxagen.co` link.
+  - Build passes clean. New routes: `/opengraph-image`, `/robots.txt`, `/sitemap.xml`. Pushed to master.
+- **What's next:** Verify OG previews on LinkedIn/Twitter post-deploy. Add real founder photo if/when desired (panel will need redesign). Compress hero video. Wire Resend.

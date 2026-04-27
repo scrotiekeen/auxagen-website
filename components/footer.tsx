@@ -29,10 +29,16 @@ export function Footer() {
               Get In Touch
             </div>
             <a
-              href="mailto:corcolt2114@gmail.com"
+              href="mailto:corbinkuehne@auxagen.co"
               className="text-sm text-gray-400 hover:text-white transition-colors"
             >
-              corcolt2114@gmail.com
+              corbinkuehne@auxagen.co
+            </a>
+            <a
+              href="https://auxagen.co"
+              className="text-sm text-gray-400 hover:text-white transition-colors"
+            >
+              auxagen.co
             </a>
           </div>
         </div>

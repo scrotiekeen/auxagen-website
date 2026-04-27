@@ -2,7 +2,39 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { User } from "lucide-react";
+import { Clock, TrendingDown, Zap } from "lucide-react";
+
+/**
+ * Value Prop section.
+ * Left: copy + CTA. Right: "Cost of Doing Nothing" data card —
+ * a polished, on-brand panel that visually reinforces the $115K stat
+ * instead of a generic photo placeholder.
+ */
+
+const COST_METRICS = [
+  {
+    icon: Clock,
+    label: "Hours lost per week",
+    value: "20+",
+    sub: "to manual workflows & follow-ups",
+    width: "62%",
+  },
+  {
+    icon: TrendingDown,
+    label: "Annual revenue leak",
+    value: "$115K",
+    sub: "in delayed leads & dropped pipeline",
+    width: "88%",
+    highlight: true,
+  },
+  {
+    icon: Zap,
+    label: "Lead response delay",
+    value: "38% slower",
+    sub: "vs. teams with automation in place",
+    width: "44%",
+  },
+];
 
 export function ValueProp() {
   return (
@@ -46,7 +78,7 @@ export function ValueProp() {
             </motion.div>
           </motion.div>
 
-          {/* ── Right: Photo placeholder ─────────────────────────────────── */}
+          {/* ── Right: "Cost of Doing Nothing" data card ────────────────── */}
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -55,18 +87,100 @@ export function ValueProp() {
             className="flex justify-center lg:justify-end"
           >
             <div
-              className="relative w-full max-w-[340px] aspect-[3/4] rounded-2xl border border-white/10 bg-white/[0.03] flex flex-col items-center justify-center gap-3 overflow-hidden"
-              style={{ boxShadow: "0 0 60px rgba(16,185,129,0.05)" }}
+              className="relative w-full max-w-[460px] rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] via-white/[0.02] to-emerald-900/10 p-8 backdrop-blur-sm overflow-hidden"
+              style={{ boxShadow: "0 0 80px rgba(16,185,129,0.07)" }}
             >
-              {/* Subtle inner gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] via-transparent to-emerald-900/10 pointer-events-none" />
+              {/* Ambient glow */}
+              <div
+                className="absolute -top-24 -right-24 w-64 h-64 rounded-full pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(16,185,129,0.18) 0%, transparent 70%)",
+                  filter: "blur(40px)",
+                }}
+              />
 
-              <div className="relative z-10 flex flex-col items-center gap-3 text-center px-6">
-                <div className="w-16 h-16 rounded-full border border-white/10 bg-white/[0.05] flex items-center justify-center">
-                  <User className="w-8 h-8 text-white/20" />
-                </div>
-                <p className="text-white/25 text-sm font-medium tracking-wide uppercase">
-                  Photo coming soon
+              {/* Card header */}
+              <div className="relative flex items-center gap-3 mb-1">
+                <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.8)]" />
+                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-400/90">
+                  Live Estimate
+                </span>
+              </div>
+
+              <h3 className="relative text-2xl font-bold text-white mt-2 mb-7 leading-tight">
+                The Cost of Doing Nothing
+              </h3>
+
+              {/* Metrics list */}
+              <div className="relative flex flex-col gap-5">
+                {COST_METRICS.map((metric, i) => {
+                  const Icon = metric.icon;
+                  return (
+                    <motion.div
+                      key={metric.label}
+                      initial={{ opacity: 0, x: -12 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: 0.5,
+                        delay: 0.4 + i * 0.12,
+                        ease: "easeOut",
+                      }}
+                      className="flex flex-col gap-1.5"
+                    >
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <Icon
+                            className={`w-4 h-4 shrink-0 ${
+                              metric.highlight ? "text-emerald-400" : "text-emerald-500/70"
+                            }`}
+                          />
+                          <span className="text-xs font-medium uppercase tracking-wider text-gray-400 truncate">
+                            {metric.label}
+                          </span>
+                        </div>
+                        <span
+                          className={`text-lg font-bold tabular-nums shrink-0 ${
+                            metric.highlight ? "text-emerald-400" : "text-white"
+                          }`}
+                        >
+                          {metric.value}
+                        </span>
+                      </div>
+
+                      {/* Animated bar */}
+                      <div className="relative h-1 rounded-full bg-white/[0.04] overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: metric.width }}
+                          viewport={{ once: true }}
+                          transition={{
+                            duration: 1,
+                            delay: 0.6 + i * 0.12,
+                            ease: [0.16, 1, 0.3, 1],
+                          }}
+                          className={`absolute inset-y-0 left-0 rounded-full ${
+                            metric.highlight
+                              ? "bg-gradient-to-r from-emerald-500 to-emerald-300 shadow-[0_0_8px_rgba(16,185,129,0.5)]"
+                              : "bg-emerald-500/40"
+                          }`}
+                        />
+                      </div>
+
+                      <p className="text-xs text-gray-500 leading-relaxed mt-0.5">
+                        {metric.sub}
+                      </p>
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              {/* Card footer divider + caption */}
+              <div className="relative mt-7 pt-5 border-t border-white/5">
+                <p className="text-[11px] text-gray-500 leading-relaxed">
+                  Based on industry averages for owner-led businesses with 5–25
+                  employees. Your numbers may be worse — or fixable.
                 </p>
               </div>
             </div>
